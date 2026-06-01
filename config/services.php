@@ -22,6 +22,14 @@ return [
         'key' => env('RESEND_KEY'),
     ],
 
+    'gemini' => [
+        'api_key' => env('GEMINI_API_KEY'),
+        'model' => env('GEMINI_MODEL', 'gemini-1.5-flash'),
+        'fallback_models' => array_filter(array_map('trim', explode(',', (string) env('GEMINI_FALLBACK_MODELS', 'gemini-1.5-flash')))),
+        'max_attempts' => (int) env('GEMINI_MAX_ATTEMPTS', 3),
+        'retry_delay_ms' => (int) env('GEMINI_RETRY_DELAY_MS', 700),
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),

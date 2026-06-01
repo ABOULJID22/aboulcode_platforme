@@ -813,7 +813,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                                   </span>
                                   <div>
                                       <h4 class="text-base sm:text-lg font-semibold dark:text-white">{{ __('site.contact.address') }}</h4>
-                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France' }}</p>
+                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc' }}</p>
                                   </div>
                               </div>
                               <div class="flex items-start mb-5 sm:mb-6 space-x-3 sm:space-x-4">
@@ -839,7 +839,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                           <div class="mt-auto w-full h-54 rounded-lg shadow-lg overflow-hidden flex-grow">
                               @php
                                   // Get the address, with a fallback for safety
-                                  $address = $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France';
+                                  $address = $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc';
                               @endphp
                               <iframe
                                   width="100%"

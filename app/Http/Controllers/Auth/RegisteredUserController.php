@@ -33,16 +33,25 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user_type' => ['required', 'in:student,teacher'],
         ]);
 
         $newUser = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_type' => $request->user_type,
+            'configuration_compt_eleve' => false,
         ]);
 
-        // Default account type after signup.
-        try { $newUser->assignRole(User::ROLE_STUDENT); } catch (\Throwable $e) {}
+        // Assign role based on user type
+        try {
+            if ($request->user_type === 'student') {
+                $newUser->assignRole(User::ROLE_STUDENT);
+            } elseif ($request->user_type === 'teacher') {
+                $newUser->assignRole(User::ROLE_TEACHER);
+            }
+        } catch (\Throwable $e) {}
 
         event(new Registered($newUser));
 
@@ -51,6 +60,11 @@ class RegisteredUserController extends Controller
         // update last login timestamp for the freshly registered user
         $newUser->update(['last_login_at' => now()]);
 
-        return redirect()->intended(route('home'));
+        // Redirect based on user type
+        if ($request->user_type === 'student') {
+            return redirect()->route('student-profile.show');
+        }
+
+        return redirect()->route('filament.admin.pages.dashboard');
     }
 }

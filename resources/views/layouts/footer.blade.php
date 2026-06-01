@@ -36,8 +36,8 @@
             <div class="md:col-span-1 lg:col-span-1">
                 <div class="flex items-center gap-3">
                     <span class="relative flex items-center justify-center overflow-hidden">
-           <a href="{{ $homeUrl }}" class="inline-block p-1  bg-gradient-to-br from-gray-900 to-gray-800 drop-shadow-lg  shadow-8xl hover:scale-105 transition-transform duration-300 group">
-                <img src="{{ asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-10 w-auto bg-gradient-to-br from-gray-900 to-gray-800 drop-shadow-lg opacity-95 group-hover:opacity-100" />
+           <a href="{{ $homeUrl }}" class="inline-block p-1  hover:scale-105 transition-transform duration-300 group">
+                <img src="{{ asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-15 w-auto  opacity-95 group-hover:opacity-100" />
             </a>          
             </span>
                 </div>
@@ -104,7 +104,7 @@
                 <div class="mt-3 space-y-2 text-sm text-white/70">
                     <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
                     <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+33 07 67 70 67 26' }}</p>
-                    <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France' }}</p>
+                    <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc' }}</p>
                 </div>
             </div>
         </div>
