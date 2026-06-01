@@ -38,4 +38,12 @@ class TagResource extends Resource
             'edit' => EditTag::route('/{record}/edit'),
         ];
     }
+
+    public static function canAccess(): bool
+    {
+        $user = auth()->user();
+
+        // Check if a user is authenticated and if they have the 'super_admin' role.
+        return $user && $user->isSuperAdmin();
+    }
 }

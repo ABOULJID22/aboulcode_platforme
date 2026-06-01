@@ -13,7 +13,7 @@ class SiteSettingSeeder extends Seeder
             SiteSetting::create([
                 'email' => 'contact@Orientationtech.ma',
                 'phone' => '+33 07 67 70 67 26',
-                'address' => '14 rue Beffory, 92200 Neuilly-sur-Seine, France',
+                'address' => '14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc',
                 'facebook_url' => 'https://www.facebook.com/',
                 'linkedin_url' => 'https://www.linkedin.com/company/OrientationTech',
                 'twitter_url' => 'https://twitter.com/',

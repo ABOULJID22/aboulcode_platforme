@@ -26,6 +26,41 @@
                     @csrf
 
                     <div class="space-y-2">
+                        <x-input-label for="user_type" :value="__('Type de profil')" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a8cab] dark:text-[#b3c4e0]" />
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="relative flex cursor-pointer items-center rounded-2xl border-2 border-[#c6d6ea] bg-white/90 p-4 transition hover:border-[#5b7db5] dark:border-slate-700 dark:bg-slate-900/70 dark:hover:border-[#8aaed0]">
+                                <input
+                                    type="radio"
+                                    name="user_type"
+                                    value="student"
+                                    required
+                                    class="h-4 w-4 cursor-pointer accent-[#4f6ba3]"
+                                    :checked="old('user_type') === 'student'"
+                                />
+                                <span class="ml-3 flex flex-col">
+                                    <span class="font-semibold text-[#2a3d5d] dark:text-slate-100">Élève</span>
+                                    <span class="text-xs text-[#5c6f8a] dark:text-slate-400">Accédez au test d'orientation</span>
+                                </span>
+                            </label>
+                            <label class="relative flex cursor-pointer items-center rounded-2xl border-2 border-[#c6d6ea] bg-white/90 p-4 transition hover:border-[#5b7db5] dark:border-slate-700 dark:bg-slate-900/70 dark:hover:border-[#8aaed0]">
+                                <input
+                                    type="radio"
+                                    name="user_type"
+                                    value="teacher"
+                                    required
+                                    class="h-4 w-4 cursor-pointer accent-[#4f6ba3]"
+                                    :checked="old('user_type') === 'teacher'"
+                                />
+                                <span class="ml-3 flex flex-col">
+                                    <span class="font-semibold text-[#2a3d5d] dark:text-slate-100">Enseignant</span>
+                                    <span class="text-xs text-[#5c6f8a] dark:text-slate-400">Tableau de bord enseignant</span>
+                                </span>
+                            </label>
+                        </div>
+                        <x-input-error :messages="$errors->get('user_type')" class="text-xs text-[#c23d3d] dark:text-rose-300" />
+                    </div>
+
+                    <div class="space-y-2">
                         <x-input-label for="name" :value="__('Nom')" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#7a8cab] dark:text-[#b3c4e0]" />
                         <x-text-input
                             id="name"

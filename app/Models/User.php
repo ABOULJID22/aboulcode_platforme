@@ -55,6 +55,8 @@ class User extends Authenticatable implements FilamentHasAvatar
         'avatar_url',
         'last_login_at',
         'email_verified_at',
+        'user_type',
+        'configuration_compt_eleve',
     ];
 
     /**
@@ -118,9 +120,14 @@ class User extends Authenticatable implements FilamentHasAvatar
 
 
     public function posts()
-{
-    return $this->hasMany(Post::class, 'author_id');
-}
+    {
+        return $this->hasMany(Post::class, 'author_id');
+    }
+
+    public function studentProfile()
+    {
+        return $this->hasOne(StudentProfile::class, 'user_id', 'id');
+    }
 
     public function commercials()
     {
