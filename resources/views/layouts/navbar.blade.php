@@ -3,8 +3,9 @@
     id="app-header" 
     role="banner"
     class="fixed top-0 z-50 w-full backdrop-blur-lg bg-gray-900/30 shadow-sm transition-all duration-300 dark:bg-gray-900/80"
-    x-data="{ mobileMenuOpen: false, userMenuOpen: false }"
-    @click.away="userMenuOpen = false"
+    x-data="navbarSearch(@js(is_scalar(request('q')) ? (string) request('q') : ''))"
+    @click.away="userMenuOpen = false; isSearchOpen = false"
+    @keydown.window="handleSearchShortcut($event)"
 >
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 sm:h-20 items-center justify-between">
@@ -57,7 +58,21 @@
 
             <!-- Desktop Actions -->
             <div class="hidden lg:flex items-center gap-3 xl:gap-4">
-                
+                 
+                <button
+                    type="button"
+                    @click.stop="toggleSearch()"
+                    class="global-search-toggle flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] dark:hover:bg-gray-700/50"
+                    aria-label="Open search"
+                    aria-controls="global-search-dropdown"
+                    :aria-expanded="isSearchOpen.toString()"
+                    :class="{ 'border-[#2563eb] bg-white/20 shadow-sm': isSearchOpen }"
+                >
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.5-3.5" />
+                    </svg>
+                </button>
                 <!-- Theme Toggle -->
                 <button 
                     type="button"
@@ -136,13 +151,13 @@
                             <!-- Menu Items -->
                             <div class="p-2">
                                 @if (Auth::user()?->hasAnyRole(['super_admin', 'admin']))
-                                    <a href="{{ route('filament.admin.pages.dashboard') }}" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
+                                    <a href="{{ route('filament.admin.pages.admin-dashboard') }}" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
                                         <svg class="h-4 w-4 text-[#2563eb]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 19h18M7 16V8m5 8V4m5 12v-6"/></svg>
                                         {{ __('site.auth.admin_panel') }}
                                     </a>
                                 @endif
                                 @if (Auth::user()?->hasAnyRole(['student', 'teacher']))
-                                    <a href="{{ route('filament.admin.pages.dashboard') }}" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
+                                    <a href="{{ route('filament.admin.pages.admin-dashboard') }}" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
                                         <svg class="h-4 w-4 text-[#2563eb]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M9 6V5a3 3 0 0 1 3-3 3 3 0 0 1 3 3v1" />
                                             <path d="M4 9h16" />
@@ -184,40 +199,56 @@
                 @endauth
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button 
-                @click="mobileMenuOpen = !mobileMenuOpen"
-                type="button"
-                class="relative flex h-10 w-10 items-center justify-center rounded-lg  text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] lg:hidden"
-                aria-label="{{ __('site.aria.menu') }}"
-                aria-expanded="false"
-                :aria-expanded="mobileMenuOpen"
-            >
-                <!-- Hamburger Icon with Animation -->
-                <span class="sr-only">{{ __('site.aria.open_menu') }}</span>
-                <svg 
-                    class="h-6 w-6 transition-transform duration-300"
-                    :class="{ 'rotate-90': mobileMenuOpen }"
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
-                    stroke-width="2"
+            <!-- Mobile Header Actions -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <button
+                    type="button"
+                    @click.stop="toggleSearch()"
+                    class="global-search-toggle flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]"
+                    aria-label="Open search"
+                    aria-controls="global-search-dropdown"
+                    :aria-expanded="isSearchOpen.toString()"
+                    :class="{ 'border-[#2563eb] bg-white/20 shadow-sm': isSearchOpen }"
                 >
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M4 6h16M4 12h16M4 18h16"
-                        x-show="!mobileMenuOpen"
-                    />
-                    <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        d="M6 18L18 6M6 6l12 12"
-                        x-show="mobileMenuOpen"
-                        x-cloak
-                    />
-                </svg>
-            </button>
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.5-3.5" />
+                    </svg>
+                </button>
+
+                <button
+                    @click="mobileMenuOpen = !mobileMenuOpen; if (mobileMenuOpen) closeSearch()"
+                    type="button"
+                    class="relative flex h-10 w-10 items-center justify-center rounded-lg text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]"
+                    aria-label="{{ __('site.aria.menu') }}"
+                    aria-expanded="false"
+                    :aria-expanded="mobileMenuOpen"
+                >
+                    <span class="sr-only">{{ __('site.aria.open_menu') }}</span>
+                    <svg
+                        class="h-6 w-6 transition-transform duration-300"
+                        :class="{ 'rotate-90': mobileMenuOpen }"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M4 6h16M4 12h16M4 18h16"
+                            x-show="!mobileMenuOpen"
+                        />
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                            x-show="mobileMenuOpen"
+                            x-cloak
+                        />
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile Menu - Slide Down -->
@@ -297,12 +328,12 @@
                     <!-- Auth Buttons Mobile -->
                     @auth
                         @if (Auth::user()?->hasAnyRole(['super_admin','admin']))
-                            <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-gray-900 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-gray-800 dark:bg-[#2563eb] dark:hover:bg-[#465a87]">
+                            <a href="{{ route('filament.admin.pages.admin-dashboard') }}" class="block w-full rounded-lg bg-gray-900 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-gray-800 dark:bg-[#2563eb] dark:hover:bg-[#465a87]">
                                 {{ __('site.auth.admin_panel') }}
                             </a>
                         @endif
                         @if (Auth::user()?->hasAnyRole(['student', 'teacher']))
-                            <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-gray-900 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-gray-800 dark:bg-[#2563eb] dark:hover:bg-[#465a87]">
+                            <a href="{{ route('filament.admin.pages.admin-dashboard') }}" class="block w-full rounded-lg bg-gray-900 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-gray-800 dark:bg-[#2563eb] dark:hover:bg-[#465a87]">
                                 {{ __('site.auth.my_space') }}
                             </a>
                         @endif
@@ -329,6 +360,8 @@
             </nav>
         </div>
     </div>
+    @include('layouts.search-dropdown')
+
 </header>
 <style>
 @layer components {

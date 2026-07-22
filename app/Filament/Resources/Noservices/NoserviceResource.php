@@ -78,6 +78,7 @@ class NoserviceResource extends Resource
         $user = auth()->user();
 
         // Check if a user is authenticated and if they have the 'super_admin' role.
-        return $user && $user->isSuperAdmin();
+        return $user && $user->isTeacher();
     }
 }
+ 

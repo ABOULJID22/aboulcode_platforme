@@ -62,7 +62,7 @@ class StudentProfileController extends Controller
         ]);
 
         return redirect()
-            ->route('filament.admin.pages.dashboard')
+            ->route('filament.admin.pages.admin-dashboard')
             ->with('success', 'Votre profil eleve a ete configure avec succes.');
     }
 
@@ -74,6 +74,6 @@ class StudentProfileController extends Controller
                 ->with('alert', 'Veuillez completer votre profil eleve pour acceder a la plateforme.');
         }
 
-        return redirect()->route('filament.admin.pages.dashboard');
+        return redirect()->route('filament.admin.pages.admin-dashboard');
     }
 }

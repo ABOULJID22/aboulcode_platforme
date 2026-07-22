@@ -194,143 +194,342 @@
         @endif
       @endisset
 
-      <section class="mt-12 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-800 dark:ring-white/10">
-        <div class="mb-6 flex items-center justify-between gap-4">
+      <section
+        x-data="{
+          deleteModalOpen: false,
+          deleteForm: null,
+          deleteTitle: '',
+          deleteMessage: '',
+          openDeleteModal(form, title, message) {
+            this.deleteForm = form;
+            this.deleteTitle = title;
+            this.deleteMessage = message;
+            this.deleteModalOpen = true;
+          },
+          confirmDelete() {
+            if (this.deleteForm) {
+              this.deleteForm.submit();
+            }
+          }
+        }"
+        x-on:keydown.escape.window="deleteModalOpen = false"
+        class="mt-12 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-200 sm:p-6 dark:bg-gray-800 dark:ring-white/10"
+      >
+        <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 class="text-2xl font-bold text-gray-950 dark:text-white">Commentaires</h2>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Pose une question, partage ton avis ou reponds a un autre eleve.</p>
+            <h2 class="mb-0 text-2xl font-bold text-gray-950 dark:text-white">Commentaires</h2>
+            <p class="mb-0 mt-1 text-sm text-gray-500 dark:text-gray-400">Pose une question, partage ton avis ou reponds a un autre eleve.</p>
           </div>
-          <span class="rounded-full bg-[#eff6ff] px-3 py-1 text-sm font-bold text-[#2563eb]">{{ $comments->count() }}</span>
+          <span class="inline-flex w-fit items-center rounded-full bg-[#eff6ff] px-3 py-1 text-sm font-bold text-[#2563eb] dark:bg-blue-500/10 dark:text-blue-200">
+            {{ number_format((int) $post->comments_count) }}
+          </span>
         </div>
 
         @if(session('success'))
-          <div class="mb-5 rounded-xl bg-emerald-50 p-4 text-sm font-semibold text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300">
+          <div class="mb-5 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-300">
             {{ session('success') }}
           </div>
         @endif
 
         @auth
-          <form method="POST" action="{{ route('pages.blog.comments.store', $post) }}" class="mb-8 space-y-3">
+          @php
+            $currentUserName = auth()->user()?->name ?? 'Utilisateur';
+            $currentUserInitials = strtoupper(collect(preg_split('/\s+/', trim($currentUserName), -1, PREG_SPLIT_NO_EMPTY))->map(fn ($part) => mb_substr($part, 0, 1))->take(2)->implode('')) ?: 'U';
+          @endphp
+          <form method="POST" action="{{ route('pages.blog.comments.store', $post) }}" class="mb-8 rounded-lg border border-gray-200 bg-gray-50/70 p-4 dark:border-white/10 dark:bg-gray-900/60">
             @csrf
-            <textarea name="content" rows="4" required maxlength="2000" class="w-full rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm text-gray-900 focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 dark:border-white/10 dark:bg-gray-900 dark:text-white" placeholder="Ecris ton commentaire...">{{ old('content') }}</textarea>
-            @error('content')<p class="text-sm text-red-600">{{ $message }}</p>@enderror
-            <button type="submit" class="rounded-lg bg-[#2563eb] px-5 py-2 text-sm font-bold text-white hover:bg-[#1d4ed8]">
-              Publier le commentaire
-            </button>
+            <div class="flex gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2563eb] text-sm font-extrabold text-white shadow-sm">
+                {{ $currentUserInitials }}
+              </div>
+              <div class="min-w-0 flex-1">
+                <label for="comment-content" class="sr-only">Ajouter un commentaire</label>
+                <textarea id="comment-content" name="content" rows="4" required maxlength="2000" class="min-h-28 w-full resize-y rounded-lg border border-gray-200 bg-white p-4 text-sm leading-6 text-gray-900 shadow-sm transition focus:border-[#2563eb] focus:outline-none focus:ring-4 focus:ring-[#2563eb]/10 dark:border-white/10 dark:bg-gray-800 dark:text-white" placeholder="Ecris ton commentaire...">{{ old('content') }}</textarea>
+                @error('content')<p class="mb-0 mt-2 text-sm text-red-600">{{ $message }}</p>@enderror
+                <div class="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <p class="mb-0 text-xs font-medium text-gray-500 dark:text-gray-400">Session : {{ $currentUserName }}</p>
+                  <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#1d4ed8] focus:outline-none focus:ring-4 focus:ring-[#2563eb]/20">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m22 2-7 20-4-9-9-4 20-7Z" />
+                      <path d="M22 2 11 13" />
+                    </svg>
+                    Publier
+                  </button>
+                </div>
+              </div>
+            </div>
           </form>
         @else
-          <div class="mb-8 rounded-xl bg-[#eff6ff] p-4 text-sm text-[#1e40af]">
+          <div class="mb-8 rounded-lg border border-[#bfdbfe] bg-[#eff6ff] p-4 text-sm font-semibold text-[#1e40af] dark:border-blue-400/20 dark:bg-blue-500/10 dark:text-blue-200">
             Connecte-toi pour ajouter un commentaire ou repondre.
           </div>
         @endauth
 
-        <div class="space-y-5">
+        <div class="space-y-4">
           @forelse($comments as $comment)
-            <div class="rounded-xl border border-gray-200 p-4 dark:border-white/10">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p class="font-bold text-gray-950 dark:text-white">{{ $comment->user?->name ?? 'Utilisateur' }}</p>
-                  <p class="mt-1 text-xs text-gray-500">{{ $comment->created_at?->format('d/m/Y H:i') }}</p>
+            @php
+              $commentAuthor = $comment->user?->name ?? 'Utilisateur';
+              $commentInitials = strtoupper(collect(preg_split('/\s+/', trim($commentAuthor), -1, PREG_SPLIT_NO_EMPTY))->map(fn ($part) => mb_substr($part, 0, 1))->take(2)->implode('')) ?: 'U';
+            @endphp
+            <article x-data="{ panel: null }" class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-[#bfdbfe] hover:shadow-md dark:border-white/10 dark:bg-gray-900/50 dark:hover:border-blue-400/30">
+              <div class="flex gap-3">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eff6ff] text-sm font-extrabold text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20">
+                  {{ $commentInitials }}
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                    <p class="mb-0 text-sm font-extrabold text-gray-950 dark:text-white">{{ $commentAuthor }}</p>
+                    <time datetime="{{ $comment->created_at?->toIso8601String() }}" class="text-xs font-medium text-gray-500 dark:text-gray-400" title="{{ $comment->created_at?->format('d/m/Y H:i') }}">
+                      {{ $comment->created_at?->diffForHumans() }}
+                    </time>
+                  </div>
+
+                  <p class="mb-0 mt-3 whitespace-pre-line text-[15px] leading-7 text-gray-700 dark:text-gray-200">{{ $comment->content }}</p>
+
+                  @auth
+                    <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-gray-100 pt-3 dark:border-white/10">
+                      <button type="button" x-on:click="panel = panel === 'reply' ? null : 'reply'" class="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-bold text-[#2563eb] transition hover:bg-[#eff6ff] dark:text-blue-200 dark:hover:bg-blue-500/10">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" />
+                        </svg>
+                        Repondre
+                      </button>
+
+                      @if(auth()->id() === $comment->user_id || auth()->user()?->isSuperAdmin())
+                        <button type="button" x-on:click="panel = panel === 'edit' ? null : 'edit'" class="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-bold text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-white/10">
+                          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 20h9" />
+                            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" />
+                          </svg>
+                          Modifier
+                        </button>
+                      @endif
+
+                      @if(auth()->id() !== $comment->user_id)
+                        <button type="button" x-on:click="panel = panel === 'report' ? null : 'report'" class="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-bold text-amber-700 transition hover:bg-amber-50 dark:text-amber-300 dark:hover:bg-amber-500/10">
+                          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V4s-1 1-4 1-5-2-8-2-4 1-4 1v18" />
+                          </svg>
+                          Signaler
+                        </button>
+                      @endif
+
+                      @if(auth()->id() === $comment->user_id || auth()->user()?->isSuperAdmin() || (auth()->user()?->isTeacher() && $post->author_id === auth()->id()))
+                        <form method="POST" action="{{ route('pages.blog.comments.delete', $comment) }}" class="inline-flex">
+                          @csrf
+                          @method('DELETE')
+                          <button
+                            type="button"
+                            x-on:click="openDeleteModal($el.closest('form'), 'Supprimer ce commentaire ?', 'Cette action est definitive. Le commentaire sera retire de la discussion.')"
+                            class="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-bold text-red-600 transition hover:bg-red-50 dark:text-red-300 dark:hover:bg-red-500/10"
+                          >
+                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                              <path d="M3 6h18" />
+                              <path d="M8 6V4h8v2" />
+                              <path d="M19 6 18 20H6L5 6" />
+                              <path d="M10 11v5" />
+                              <path d="M14 11v5" />
+                            </svg>
+                            Supprimer
+                          </button>
+                        </form>
+                      @endif
+                    </div>
+
+                    <div class="mt-3 space-y-3">
+                      <form x-cloak x-show="panel === 'reply'" x-transition method="POST" action="{{ route('pages.blog.comments.store', $post) }}" class="rounded-lg border border-[#bfdbfe] bg-[#eff6ff]/70 p-3 dark:border-blue-400/20 dark:bg-blue-500/10">
+                        @csrf
+                        <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                        <label for="reply-{{ $comment->id }}" class="sr-only">Repondre a {{ $commentAuthor }}</label>
+                        <textarea id="reply-{{ $comment->id }}" name="content" rows="3" required maxlength="2000" class="w-full resize-y rounded-lg border border-gray-200 bg-white p-3 text-sm leading-6 text-gray-900 shadow-sm focus:border-[#2563eb] focus:outline-none focus:ring-4 focus:ring-[#2563eb]/10 dark:border-white/10 dark:bg-gray-800 dark:text-white" placeholder="Ecris une reponse..."></textarea>
+                        <div class="mt-3 flex justify-end gap-2">
+                          <button type="button" x-on:click="panel = null" class="rounded-lg px-3 py-2 text-sm font-bold text-gray-600 transition hover:bg-white dark:text-gray-300 dark:hover:bg-white/10">Annuler</button>
+                          <button type="submit" class="rounded-lg bg-[#2563eb] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#1d4ed8]">Envoyer</button>
+                        </div>
+                      </form>
+
+                      @if(auth()->id() === $comment->user_id || auth()->user()?->isSuperAdmin())
+                        <form x-cloak x-show="panel === 'edit'" x-transition method="POST" action="{{ route('pages.blog.comments.update', $comment) }}" class="rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-white/10 dark:bg-gray-800">
+                          @csrf
+                          @method('PATCH')
+                          <label for="edit-comment-{{ $comment->id }}" class="sr-only">Modifier le commentaire</label>
+                          <textarea id="edit-comment-{{ $comment->id }}" name="content" rows="3" required maxlength="2000" class="w-full resize-y rounded-lg border border-gray-200 bg-white p-3 text-sm leading-6 text-gray-900 shadow-sm focus:border-[#2563eb] focus:outline-none focus:ring-4 focus:ring-[#2563eb]/10 dark:border-white/10 dark:bg-gray-900 dark:text-white">{{ $comment->content }}</textarea>
+                          <div class="mt-3 flex justify-end gap-2">
+                            <button type="button" x-on:click="panel = null" class="rounded-lg px-3 py-2 text-sm font-bold text-gray-600 transition hover:bg-white dark:text-gray-300 dark:hover:bg-white/10">Annuler</button>
+                            <button type="submit" class="rounded-lg bg-gray-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-gray-800 dark:bg-white dark:text-gray-950 dark:hover:bg-gray-200">Enregistrer</button>
+                          </div>
+                        </form>
+                      @endif
+
+                      @if(auth()->id() !== $comment->user_id)
+                        <form x-cloak x-show="panel === 'report'" x-transition method="POST" action="{{ route('pages.blog.comments.report', $comment) }}" class="rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-400/20 dark:bg-amber-500/10">
+                          @csrf
+                          <label for="report-comment-{{ $comment->id }}" class="sr-only">Motif du signalement</label>
+                          <input id="report-comment-{{ $comment->id }}" name="reason" required maxlength="120" class="w-full rounded-lg border border-amber-200 bg-white p-3 text-sm text-gray-900 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/10 dark:border-amber-400/20 dark:bg-gray-900 dark:text-white" placeholder="Motif du signalement">
+                          <textarea name="details" rows="2" maxlength="1000" class="mt-2 w-full resize-y rounded-lg border border-amber-200 bg-white p-3 text-sm text-gray-900 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/10 dark:border-amber-400/20 dark:bg-gray-900 dark:text-white" placeholder="Details optionnels"></textarea>
+                          <div class="mt-3 flex justify-end gap-2">
+                            <button type="button" x-on:click="panel = null" class="rounded-lg px-3 py-2 text-sm font-bold text-amber-800 transition hover:bg-white dark:text-amber-200 dark:hover:bg-white/10">Annuler</button>
+                            <button type="submit" class="rounded-lg bg-amber-600 px-4 py-2 text-sm font-bold text-white transition hover:bg-amber-700">Envoyer</button>
+                          </div>
+                        </form>
+                      @endif
+                    </div>
+                  @endauth
                 </div>
               </div>
 
-              <p class="mt-3 whitespace-pre-line text-sm leading-6 text-gray-700 dark:text-gray-200">{{ $comment->content }}</p>
-
-              @auth
-                <div class="mt-4 flex flex-wrap gap-2">
-                  <details class="rounded-lg bg-gray-50 px-3 py-2 text-sm dark:bg-gray-900">
-                    <summary class="cursor-pointer font-semibold text-[#2563eb]">Repondre</summary>
-                    <form method="POST" action="{{ route('pages.blog.comments.store', $post) }}" class="mt-3 space-y-2">
-                      @csrf
-                      <input type="hidden" name="parent_id" value="{{ $comment->id }}">
-                      <textarea name="content" rows="3" required maxlength="2000" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-gray-800"></textarea>
-                      <button class="rounded-lg bg-[#2563eb] px-4 py-2 text-xs font-bold text-white">Envoyer</button>
-                    </form>
-                  </details>
-
-                  @if(auth()->id() === $comment->user_id || auth()->user()?->isSuperAdmin())
-                    <details class="rounded-lg bg-gray-50 px-3 py-2 text-sm dark:bg-gray-900">
-                      <summary class="cursor-pointer font-semibold text-gray-700 dark:text-gray-200">Modifier</summary>
-                      <form method="POST" action="{{ route('pages.blog.comments.update', $comment) }}" class="mt-3 space-y-2">
-                        @csrf
-                        @method('PATCH')
-                        <textarea name="content" rows="3" required maxlength="2000" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-gray-800">{{ $comment->content }}</textarea>
-                        <button class="rounded-lg bg-[#2563eb] px-4 py-2 text-xs font-bold text-white">Enregistrer</button>
-                      </form>
-                    </details>
-                  @endif
-
-                  @if(auth()->id() !== $comment->user_id)
-                    <details class="rounded-lg bg-gray-50 px-3 py-2 text-sm dark:bg-gray-900">
-                      <summary class="cursor-pointer font-semibold text-amber-600">Signaler</summary>
-                      <form method="POST" action="{{ route('pages.blog.comments.report', $comment) }}" class="mt-3 space-y-2">
-                        @csrf
-                        <input name="reason" required maxlength="120" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-gray-800" placeholder="Motif du signalement">
-                        <textarea name="details" rows="2" maxlength="1000" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-gray-800" placeholder="Details optionnels"></textarea>
-                        <button class="rounded-lg bg-amber-500 px-4 py-2 text-xs font-bold text-white">Signaler</button>
-                      </form>
-                    </details>
-                  @endif
-
-                  @if(auth()->id() === $comment->user_id || auth()->user()?->isSuperAdmin() || (auth()->user()?->isTeacher() && $post->author_id === auth()->id()))
-                    <form method="POST" action="{{ route('pages.blog.comments.delete', $comment) }}">
-                      @csrf
-                      @method('DELETE')
-                      <button class="rounded-lg bg-red-50 px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-100 dark:bg-red-500/10 dark:text-red-300">Supprimer</button>
-                    </form>
-                  @endif
-                </div>
-              @endauth
-
               @if($comment->replies->count())
-                <div class="mt-4 space-y-3 border-l-2 border-[#bfdbfe] pl-4">
+                <div class="mt-5 space-y-3 border-l border-[#bfdbfe] pl-4 sm:ml-5 sm:pl-6 dark:border-blue-400/30">
                   @foreach($comment->replies as $reply)
-                    <div class="rounded-lg bg-gray-50 p-3 dark:bg-gray-900">
-                      <p class="text-sm font-bold text-gray-950 dark:text-white">{{ $reply->user?->name ?? 'Utilisateur' }}</p>
-                      <p class="mt-1 whitespace-pre-line text-sm text-gray-700 dark:text-gray-200">{{ $reply->content }}</p>
-
-                      @auth
-                        <div class="mt-3 flex flex-wrap gap-2">
-                          @if(auth()->id() === $reply->user_id || auth()->user()?->isSuperAdmin())
-                            <details class="rounded-lg bg-white px-3 py-2 text-xs dark:bg-gray-800">
-                              <summary class="cursor-pointer font-semibold text-gray-700 dark:text-gray-200">Modifier</summary>
-                              <form method="POST" action="{{ route('pages.blog.comments.update', $reply) }}" class="mt-2 space-y-2">
-                                @csrf
-                                @method('PATCH')
-                                <textarea name="content" rows="2" required maxlength="2000" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-gray-800">{{ $reply->content }}</textarea>
-                                <button class="rounded-lg bg-[#2563eb] px-3 py-2 text-xs font-bold text-white">Enregistrer</button>
-                              </form>
-                            </details>
-                          @endif
-
-                          @if(auth()->id() !== $reply->user_id)
-                            <details class="rounded-lg bg-white px-3 py-2 text-xs dark:bg-gray-800">
-                              <summary class="cursor-pointer font-semibold text-amber-600">Signaler</summary>
-                              <form method="POST" action="{{ route('pages.blog.comments.report', $reply) }}" class="mt-2 space-y-2">
-                                @csrf
-                                <input name="reason" required maxlength="120" class="w-full rounded-lg border border-gray-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-gray-800" placeholder="Motif">
-                                <button class="rounded-lg bg-amber-500 px-3 py-2 text-xs font-bold text-white">Signaler</button>
-                              </form>
-                            </details>
-                          @endif
-
-                          @if(auth()->id() === $reply->user_id || auth()->user()?->isSuperAdmin() || (auth()->user()?->isTeacher() && $post->author_id === auth()->id()))
-                            <form method="POST" action="{{ route('pages.blog.comments.delete', $reply) }}">
-                              @csrf
-                              @method('DELETE')
-                              <button class="rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-600 hover:bg-red-100 dark:bg-red-500/10 dark:text-red-300">Supprimer</button>
-                            </form>
-                          @endif
+                    @php
+                      $replyAuthor = $reply->user?->name ?? 'Utilisateur';
+                      $replyInitials = strtoupper(collect(preg_split('/\s+/', trim($replyAuthor), -1, PREG_SPLIT_NO_EMPTY))->map(fn ($part) => mb_substr($part, 0, 1))->take(2)->implode('')) ?: 'U';
+                    @endphp
+                    <article x-data="{ panel: null }" class="rounded-lg bg-gray-50 p-3 ring-1 ring-gray-100 dark:bg-gray-800/80 dark:ring-white/10">
+                      <div class="flex gap-3">
+                        <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-xs font-extrabold text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-gray-900 dark:text-blue-200 dark:ring-blue-400/20">
+                          {{ $replyInitials }}
                         </div>
-                      @endauth
-                    </div>
+                        <div class="min-w-0 flex-1">
+                          <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                            <p class="mb-0 text-sm font-bold text-gray-950 dark:text-white">{{ $replyAuthor }}</p>
+                            <time datetime="{{ $reply->created_at?->toIso8601String() }}" class="text-xs font-medium text-gray-500 dark:text-gray-400" title="{{ $reply->created_at?->format('d/m/Y H:i') }}">
+                              {{ $reply->created_at?->diffForHumans() }}
+                            </time>
+                          </div>
+                          <p class="mb-0 mt-2 whitespace-pre-line text-sm leading-6 text-gray-700 dark:text-gray-200">{{ $reply->content }}</p>
+
+                          @auth
+                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                              @if(auth()->id() === $reply->user_id || auth()->user()?->isSuperAdmin())
+                                <button type="button" x-on:click="panel = panel === 'edit' ? null : 'edit'" class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-bold text-gray-700 transition hover:bg-white dark:text-gray-200 dark:hover:bg-white/10">
+                                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 20h9" />
+                                    <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" />
+                                  </svg>
+                                  Modifier
+                                </button>
+                              @endif
+
+                              @if(auth()->id() !== $reply->user_id)
+                                <button type="button" x-on:click="panel = panel === 'report' ? null : 'report'" class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-bold text-amber-700 transition hover:bg-amber-50 dark:text-amber-300 dark:hover:bg-amber-500/10">
+                                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V4s-1 1-4 1-5-2-8-2-4 1-4 1v18" />
+                                  </svg>
+                                  Signaler
+                                </button>
+                              @endif
+
+                              @if(auth()->id() === $reply->user_id || auth()->user()?->isSuperAdmin() || (auth()->user()?->isTeacher() && $post->author_id === auth()->id()))
+                                <form method="POST" action="{{ route('pages.blog.comments.delete', $reply) }}" class="inline-flex">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button
+                                    type="button"
+                                    x-on:click="openDeleteModal($el.closest('form'), 'Supprimer cette reponse ?', 'Cette action est definitive. La reponse sera retiree de la discussion.')"
+                                    class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-bold text-red-600 transition hover:bg-red-50 dark:text-red-300 dark:hover:bg-red-500/10"
+                                  >
+                                    <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                      <path d="M3 6h18" />
+                                      <path d="M8 6V4h8v2" />
+                                      <path d="M19 6 18 20H6L5 6" />
+                                    </svg>
+                                    Supprimer
+                                  </button>
+                                </form>
+                              @endif
+                            </div>
+
+                            <div class="mt-3 space-y-3">
+                              @if(auth()->id() === $reply->user_id || auth()->user()?->isSuperAdmin())
+                                <form x-cloak x-show="panel === 'edit'" x-transition method="POST" action="{{ route('pages.blog.comments.update', $reply) }}" class="rounded-lg border border-gray-200 bg-white p-3 dark:border-white/10 dark:bg-gray-900">
+                                  @csrf
+                                  @method('PATCH')
+                                  <label for="edit-reply-{{ $reply->id }}" class="sr-only">Modifier la reponse</label>
+                                  <textarea id="edit-reply-{{ $reply->id }}" name="content" rows="2" required maxlength="2000" class="w-full resize-y rounded-lg border border-gray-200 bg-white p-3 text-sm leading-6 text-gray-900 shadow-sm focus:border-[#2563eb] focus:outline-none focus:ring-4 focus:ring-[#2563eb]/10 dark:border-white/10 dark:bg-gray-800 dark:text-white">{{ $reply->content }}</textarea>
+                                  <div class="mt-3 flex justify-end gap-2">
+                                    <button type="button" x-on:click="panel = null" class="rounded-lg px-3 py-2 text-xs font-bold text-gray-600 transition hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-white/10">Annuler</button>
+                                    <button type="submit" class="rounded-lg bg-gray-950 px-3 py-2 text-xs font-bold text-white transition hover:bg-gray-800 dark:bg-white dark:text-gray-950 dark:hover:bg-gray-200">Enregistrer</button>
+                                  </div>
+                                </form>
+                              @endif
+
+                              @if(auth()->id() !== $reply->user_id)
+                                <form x-cloak x-show="panel === 'report'" x-transition method="POST" action="{{ route('pages.blog.comments.report', $reply) }}" class="rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-400/20 dark:bg-amber-500/10">
+                                  @csrf
+                                  <label for="report-reply-{{ $reply->id }}" class="sr-only">Motif du signalement</label>
+                                  <input id="report-reply-{{ $reply->id }}" name="reason" required maxlength="120" class="w-full rounded-lg border border-amber-200 bg-white p-3 text-sm text-gray-900 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/10 dark:border-amber-400/20 dark:bg-gray-900 dark:text-white" placeholder="Motif du signalement">
+                                  <div class="mt-3 flex justify-end gap-2">
+                                    <button type="button" x-on:click="panel = null" class="rounded-lg px-3 py-2 text-xs font-bold text-amber-800 transition hover:bg-white dark:text-amber-200 dark:hover:bg-white/10">Annuler</button>
+                                    <button type="submit" class="rounded-lg bg-amber-600 px-3 py-2 text-xs font-bold text-white transition hover:bg-amber-700">Envoyer</button>
+                                  </div>
+                                </form>
+                              @endif
+                            </div>
+                          @endauth
+                        </div>
+                      </div>
+                    </article>
                   @endforeach
                 </div>
               @endif
-            </div>
+            </article>
           @empty
-            <p class="rounded-xl bg-gray-50 p-5 text-center text-sm text-gray-500 dark:bg-gray-900 dark:text-gray-400">Aucun commentaire pour le moment.</p>
+            <p class="mb-0 rounded-lg border border-dashed border-gray-200 bg-gray-50 p-6 text-center text-sm font-medium text-gray-500 dark:border-white/10 dark:bg-gray-900 dark:text-gray-400">Aucun commentaire pour le moment.</p>
           @endforelse
+        </div>
+
+        <div
+          x-cloak
+          x-show="deleteModalOpen"
+          x-transition.opacity
+          x-on:click.self="deleteModalOpen = false"
+          class="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/60 px-4 py-6 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="delete-comment-title"
+        >
+          <div
+            x-show="deleteModalOpen"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="scale-95 opacity-0"
+            x-transition:enter-end="scale-100 opacity-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="scale-100 opacity-100"
+            x-transition:leave-end="scale-95 opacity-0"
+            class="w-full max-w-md rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-red-100 dark:bg-gray-900 dark:ring-red-500/20"
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-600 ring-1 ring-red-100 dark:bg-red-500/10 dark:text-red-300 dark:ring-red-500/20">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 9v4" />
+                  <path d="M12 17h.01" />
+                  <path d="M10.3 3.6 2.5 18a2 2 0 0 0 1.75 3h15.5a2 2 0 0 0 1.75-3L13.7 3.6a2 2 0 0 0-3.4 0Z" />
+                </svg>
+              </div>
+              <div class="min-w-0 flex-1">
+                <h3 id="delete-comment-title" class="mb-0 text-lg font-extrabold text-gray-950 dark:text-white" x-text="deleteTitle"></h3>
+                <p class="mb-0 mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300" x-text="deleteMessage"></p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                x-on:click="deleteModalOpen = false"
+                class="inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-bold text-gray-700 transition hover:bg-gray-50 dark:border-white/10 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-white/10"
+              >
+                Annuler
+              </button>
+              <button
+                type="button"
+                x-on:click="confirmDelete()"
+                class="inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500/20"
+              >
+                Supprimer
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 

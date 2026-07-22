@@ -54,7 +54,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                     </p>
 
                     <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="#how" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-[#2563eb] to-[#1e40af] px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-[#1d4ed8] hover:shadow-xl">
+                        <a href="{{ route('orientation.start') }}" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-[#2563eb] to-[#1e40af] px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-[#1d4ed8] hover:shadow-xl">
                             {{ __('site.hero.cta_primary') }}
                         </a>
                         <a href="/domaines-numeriques" class="inline-flex items-center justify-center rounded-lg border border-[#93c5fd] bg-white/80 px-6 py-3 text-sm font-extrabold text-[#1d4ed8] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#2563eb] hover:bg-white dark:border-blue-400/30 dark:bg-white/10 dark:text-blue-100 dark:hover:bg-white/15">
@@ -159,7 +159,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                 </p>
 
                  <div class="flex flex-wrap gap-4 mb-10">
-                    <a href="#how"
+                    <a href="{{ route('orientation.start') }}"
                       class="inline-flex items-center gap-2 bg-gradient-to-br from-[#2563eb] to-[#172554] text-white px-7 py-3.5 rounded-xl font-bold shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition">
                       Commencer mon orientation
                     </a>
@@ -409,7 +409,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
               <div class="flex items-start gap-4">
                 <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
                   <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l5.653-4.655m5.8-5.8 3.056-3.056a2.533 2.533 0 0 1 3.586 3.586L20.22 9.37m-5.8-5.8-2.678 2.678m5.8 5.8-2.678-2.678m-5.8 5.8-3.056 3.056" />
+             <circle cx="12" cy="12" r="3.5"/><path d="M12 2.75v3"/><path d="M12 18.25v3"/><path d="M2.75 12h3"/><path d="M18.25 12h3"/>
+
                   </svg>
                 </div>
                 <div>

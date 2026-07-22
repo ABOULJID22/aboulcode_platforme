@@ -2,12 +2,19 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
+use App\Models\User;
+use App\Services\Notifications\PlatformNotificationService;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Notifications\Notification;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Filament\Actions\DeleteAction;
@@ -73,6 +80,17 @@ class UsersTable
                 TextColumn::make('phone')
                     ->label(__('users.table.phone'))
                     ->toggleable(),
+
+                TextColumn::make('is_active')
+                    ->label('Statut')
+                    ->formatStateUsing(fn (bool $state, User $record): string => $state
+                        ? 'Actif'
+                        : ($record->isTeacher() ? 'En attente' : 'Inactif'))
+                    ->badge()
+                    ->color(fn (bool $state, User $record): string => $state
+                        ? 'success'
+                        : ($record->isTeacher() ? 'warning' : 'danger'))
+                    ->sortable(),
                 
         
                 TextColumn::make('last_login_at')
@@ -82,9 +100,53 @@ class UsersTable
                
             ])
             ->filters([
-                //
+                SelectFilter::make('role')
+                    ->label('Role')
+                    ->options([
+                        User::ROLE_SUPER_ADMIN => 'Super admin',
+                        User::ROLE_TEACHER => 'Enseignant',
+                        User::ROLE_STUDENT => 'Eleve',
+                        User::ROLE_USER => 'Utilisateur',
+                    ])
+                    ->query(fn (Builder $query, array $data): Builder => filled($data['value'] ?? null)
+                        ? $query->whereHas('roles', fn (Builder $roleQuery): Builder => $roleQuery->where('name', $data['value']))
+                        : $query),
+
+                SelectFilter::make('is_active')
+                    ->label('Statut')
+                    ->options([
+                        '1' => 'Actif',
+                        '0' => 'Inactif / en attente',
+                    ]),
+
+                Filter::make('pending_teachers')
+                    ->label('Enseignants en attente')
+                    ->query(fn (Builder $query): Builder => $query
+                        ->where('is_active', false)
+                        ->whereHas('roles', fn (Builder $roleQuery): Builder => $roleQuery->where('name', User::ROLE_TEACHER))),
             ])
             ->recordActions([
+                Action::make('validate_teacher')
+                    ->label('Valider')
+                    ->icon('heroicon-m-check-circle')
+                    ->color('success')
+                    ->requiresConfirmation()
+                    ->visible(fn (User $record): bool => (auth()->user()?->isSuperAdmin() ?? false)
+                        && $record->isTeacher()
+                        && ! $record->is_active)
+                    ->action(function (User $record): void {
+                        $record->update(['is_active' => true]);
+
+                        app(PlatformNotificationService::class)->notifyTeacherValidated($record->fresh());
+
+                        Notification::make()
+                            ->title('Compte enseignant valide')
+                            ->body("{$record->name} peut maintenant se connecter.")
+                            ->success()
+                            ->send();
+                    })
+                    ->button(),
+
                 ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make()->visible(fn () => auth()->user()?->isSuperAdmin() ?? false),

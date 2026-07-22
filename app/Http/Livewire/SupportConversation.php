@@ -326,6 +326,23 @@ class SupportConversation extends Component
         $requestsCollection = $this->contactRequests instanceof Collection ? $this->contactRequests : collect($this->contactRequests);
         $messagesCollection = $this->threadMessages instanceof Collection ? $this->threadMessages : collect($this->threadMessages);
 
+        // Hide mirrored initial messages so the first contact request is not duplicated in the timeline.
+        $requestsById = $requestsCollection->keyBy('id');
+        $messagesCollection = $messagesCollection->reject(function (SupportMessage $message) use ($requestsById) {
+            $initialRequest = $requestsById->get($message->contact_id);
+
+            if (! $initialRequest || $message->sender_type !== 'client') {
+                return false;
+            }
+
+            $sameBody = trim((string) $message->body) === trim((string) $initialRequest->message);
+            $createdWithRequest = $message->created_at && $initialRequest->created_at
+                ? abs($message->created_at->getTimestamp() - $initialRequest->created_at->getTimestamp()) <= 15
+                : false;
+
+            return $sameBody && $createdWithRequest;
+        });
+
         $timelineEntries = collect();
 
         if ($requestsCollection->isNotEmpty()) {
@@ -415,9 +432,8 @@ class SupportConversation extends Component
                 : 'E-mail envoyé avec succès.';
         } catch (\Throwable $e) {
             $mailSent = false;
-            // Suppress any mail error message in the UI. Only log the exception for troubleshooting.
-            $this->mailStatusIsError = false;
-            $this->mailStatusMessage = null;
+            $this->mailStatusIsError = true;
+            $this->mailStatusMessage = "Message enregistre dans la conversation. L'e-mail n'a pas pu etre envoye.";
 
             Log::error('SupportConversation mail send failed (silenced in UI)', [
                 'contact_id' => $contact->id,
@@ -433,11 +449,14 @@ class SupportConversation extends Component
 
         // Always clear the admin reply input after sending (do not keep the draft in the UI).
         $this->adminReplyBody = '';
-        $this->mailStatusMessage = null;
-        $this->mailStatusIsError = false;
 
         $this->loadContacts();
         $this->loadMessages();
+
+        if ($mailSent) {
+            $this->mailStatusMessage = 'Message envoye dans la conversation.';
+            $this->mailStatusIsError = false;
+        }
     }
 
     public function postMessageAsClient()
@@ -494,13 +513,11 @@ class SupportConversation extends Component
             ]);
         }
 
-        $contact->update(['message' => $this->clientReplyBody]);
-
         $this->clientReplyBody = '';
 
         $this->loadContacts();
         $this->loadMessages();
-        $this->mailStatusMessage = null;
+        $this->mailStatusMessage = 'Message envoye dans la conversation.';
         $this->mailStatusIsError = false;
     }
 
@@ -541,10 +558,34 @@ class SupportConversation extends Component
             return;
         }
 
+        $previousMessage = $contact->message;
+
         $contact->update(['message' => $this->editedMessage]);
-    $this->editingMessage = false;
-    $this->loadContacts();
-    $this->dispatch('filament-notify', ['message' => 'Message mis à jour']);
+
+        // Keep the hidden initial thread mirror aligned with the edited first message.
+        $initialThreadMessage = SupportMessage::where('contact_id', $contact->id)
+            ->where('sender_type', 'client')
+            ->orderBy('created_at')
+            ->get()
+            ->first(function (SupportMessage $message) use ($contact, $previousMessage) {
+                $sameBody = trim((string) $message->body) === trim((string) $previousMessage);
+                $createdWithRequest = $message->created_at && $contact->created_at
+                    ? abs($message->created_at->getTimestamp() - $contact->created_at->getTimestamp()) <= 15
+                    : false;
+
+                return $sameBody && $createdWithRequest;
+            });
+
+        if ($initialThreadMessage) {
+            $initialThreadMessage->update(['body' => $this->editedMessage]);
+        }
+
+        $this->editingMessage = false;
+        $this->loadContacts();
+        $this->loadMessages();
+        $this->mailStatusMessage = 'Message mis a jour.';
+        $this->mailStatusIsError = false;
+        $this->dispatch('filament-notify', ['message' => 'Message mis à jour']);
     }
 
     // Thread message editing: only allow the message owner to edit their message

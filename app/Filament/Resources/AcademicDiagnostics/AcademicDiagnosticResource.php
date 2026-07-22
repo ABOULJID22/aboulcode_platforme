@@ -42,6 +42,16 @@ class AcademicDiagnosticResource extends Resource
             : __('filament.nav.groups.orientation');
     }
 
+    public static function canAccess(): bool
+    {
+        $user = auth()->user();
+
+        return $user && (
+            (method_exists($user, 'isSuperAdmin') && $user->isSuperAdmin())
+            || (method_exists($user, 'isStudent') && $user->isStudent())
+        );
+    }
+
     public static function getEloquentQuery(): Builder
     {
         $query = parent::getEloquentQuery();

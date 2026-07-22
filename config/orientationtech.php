@@ -2,7 +2,7 @@
 
 return [
     'supported_locales' => [
-        'fr' => 'Francais',
+        'fr' => 'Français',
         'en' => 'English',
     ],
 ];

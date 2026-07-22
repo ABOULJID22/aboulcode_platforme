@@ -131,6 +131,19 @@ class PlatformNotificationService
         );
     }
 
+    public function notifyTeacherValidated(User $user): void
+    {
+        $this->sendToUsers(
+            $user,
+            'Compte enseignant valide',
+            'Votre compte enseignant a ete valide. Vous pouvez maintenant vous connecter au panel.',
+            'success',
+            url('/login'),
+            'Se connecter',
+            'heroicon-o-check-circle',
+        );
+    }
+
     public function notifyDiagnosticCompleted(AcademicDiagnostic $diagnostic): void
     {
         $user = $diagnostic->user;

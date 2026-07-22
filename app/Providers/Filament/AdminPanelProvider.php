@@ -2,30 +2,29 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
+use App\Filament\Pages\AdminDashboard;
+use App\Filament\Pages\SupportConversations;
+use App\Filament\Widgets\BlogStats;
+use App\Filament\Widgets\ContentGuidanceOverviewWidget;
+use App\Http\Middleware\CheckUserIsSuperAdmin;
+use App\Http\Middleware\SetLocaleFromSession;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Filament\Actions\Action;
+use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
+use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
-use App\Filament\Widgets\BlogStats;
-use App\Filament\Widgets\ContentGuidanceOverviewWidget;
+use Filament\View\PanelsRenderHook;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use App\Http\Middleware\CheckUserIsSuperAdmin;
-use Filament\Actions\Action;
-use App\Http\Middleware\SetLocaleFromSession;
-use Filament\Support\Facades\FilamentView;
-use Filament\View\PanelsRenderHook;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -36,19 +35,39 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             /* ->login() */
-             ->colors([
+            ->colors([
                 'primary' => Color::hex('#2563eb'),
             ])
             ->darkMode()
-            ->brandLogo(fn() => view('filament.admin.logo'))
+            ->brandName('OrientationTech')
+            ->brandLogo(fn () => view('filament.admin.logo'))
             ->favicon(asset('favicon.png'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
-                Dashboard::class,
+                AdminDashboard::class,
+            ])
+            ->navigationGroups([
+                NavigationGroup::make(fn (): string => __('filament.nav.groups.principal'))
+                    ->collapsible(false),
+                NavigationGroup::make(fn (): string => __('filament.nav.groups.administration'))
+                    ->collapsible(false),
+                NavigationGroup::make(fn (): string => __('filament.nav.groups.support'))
+                    ->collapsible(false),
+                NavigationGroup::make(fn (): string => __('filament.nav.groups.content'))
+                    ->collapsible(false),
+                NavigationGroup::make(fn (): string => __('filament.nav.groups.blog'))
+                    ->collapsible(false),
+                NavigationGroup::make(fn (): string => __('filament.nav.groups.my_orientation')),
             ])
             //->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
+                \App\Filament\Widgets\OrientationKpiOverviewWidget::class,
+                \App\Filament\Widgets\RegistrationsOverviewChart::class,
+                \App\Filament\Widgets\RecommendedDomainsWidget::class,
+                \App\Filament\Widgets\OrientationInsightsWidget::class,
+                \App\Filament\Widgets\RecentAdminActivityWidget::class,
+                \App\Filament\Widgets\QuickActionsWidget::class,
                 \App\Filament\Widgets\StudentDashboardStats::class,
                 \App\Filament\Widgets\StudentPersonalityRadarChart::class,
                 \App\Filament\Widgets\StudentDomainCompatibilityChart::class,
@@ -59,16 +78,23 @@ class AdminPanelProvider extends PanelProvider
                 \App\Filament\Widgets\AdminPlatformOverviewWidget::class,
                 BlogStats::class,
                 ContentGuidanceOverviewWidget::class,
+                \App\Filament\Widgets\AdminDashboardFooterWidget::class,
             ])
             ->renderHook(
                 PanelsRenderHook::GLOBAL_SEARCH_AFTER,
                 fn (): string => view('filament.partials.lang-switch')->render(),
             )
             ->renderHook(
+                PanelsRenderHook::SIDEBAR_FOOTER,
+                fn (): string => view('filament.partials.sidebar-support-card')->render(),
+            )
+            ->renderHook(
                 PanelsRenderHook::BODY_END,
                 fn (): string => view('filament.partials.hide-header')->render(),
             )
-            ->globalSearch(false)
+            ->globalSearch()
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
+            ->globalSearchFieldKeyBindingSuffix()
             ->databaseNotificationsPolling('10s')
             ->middleware([
                 EncryptCookies::class,
@@ -84,11 +110,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                CheckUserIsSuperAdmin::class, //middleware 
+                CheckUserIsSuperAdmin::class,
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),
-               
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->homeUrl('/')
@@ -101,6 +126,10 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Profil')
                     ->icon('heroicon-m-user')
                     ->url('/profile'),
+                Action::make('support')
+                    ->label(__('filament.dashboard.footer.support'))
+                    ->icon('heroicon-m-lifebuoy')
+                    ->url(fn (): string => SupportConversations::getUrl()),
                 Action::make('lang-fr')
                     ->label('Français')
                     ->icon('heroicon-m-language')
@@ -112,26 +141,14 @@ class AdminPanelProvider extends PanelProvider
                     ->url('/locale/en')
                     ->sort(-9),
             ])
-            ->sidebarCollapsibleOnDesktop()
-            ->sidebarWidth('16rem')
+            ->sidebarWidth('18rem')
             ->databaseNotifications();
-
-           
-            
-            
-
-
-            
-             
     }
 
-
-
-            public static function canAccess(): bool
+    public static function canAccess(): bool
     {
         $user = auth()->user();
 
-                return $user && ($user->isSuperAdmin() || $user->isTeacher() || $user->isStudent());
+        return $user && ($user->isSuperAdmin() || $user->isTeacher() || $user->isStudent());
     }
-
 }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\OrientationStartController;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
@@ -60,6 +62,8 @@ class RegisteredUserController extends Controller
         event(new Registered($newUser));
 
         app(PlatformNotificationService::class)->notifyUserRegistered($newUser);
+
+        Cookie::queue(cookie()->forever(OrientationStartController::ACCOUNT_COOKIE, '1'));
 
         if ($userType === User::ROLE_TEACHER) {
             return redirect()->route('login')

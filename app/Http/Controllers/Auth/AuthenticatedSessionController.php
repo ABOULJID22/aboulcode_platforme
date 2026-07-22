@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\OrientationStartController;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -31,6 +33,8 @@ class AuthenticatedSessionController extends Controller
         if ($user) {
             $user->update(['last_login_at' => now()]);
         }
+
+        Cookie::queue(cookie()->forever(OrientationStartController::ACCOUNT_COOKIE, '1'));
 
         $request->session()->regenerate();
 

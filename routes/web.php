@@ -3,9 +3,11 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DomainExplorerController;
+use App\Http\Controllers\GlobalSearchController;
 use App\Http\Controllers\PostInteractionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceContentController;
+use App\Http\Controllers\OrientationStartController;
 use App\Http\Controllers\StudentProfileController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +26,10 @@ use App\Models\Post;
  */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/recherche', GlobalSearchController::class)->name('search');
+
+Route::get('/commencer-orientation', OrientationStartController::class)->name('orientation.start');
 
 
 
@@ -125,6 +131,20 @@ Route::post('/client/support', function (\Illuminate\Http\Request $request) {
         'user_other' => null,
         'message' => $validated['message'],
     ]);
+
+    // Keep the first support request available in the threaded conversation.
+    try {
+        \App\Models\SupportMessage::create([
+            'contact_id' => $contact->id,
+            'user_id' => $request->user()?->id,
+            'body' => $contact->message,
+            'sender_type' => 'client',
+        ]);
+    } catch (\Throwable $e) {
+        \Illuminate\Support\Facades\Log::warning('Initial in-panel support message not created: '.$e->getMessage(), [
+            'contact_id' => $contact->id,
+        ]);
+    }
 
     app(\App\Services\Notifications\PlatformNotificationService::class)->notifyContactMessage($contact);
 

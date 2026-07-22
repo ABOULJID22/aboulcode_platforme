@@ -148,14 +148,14 @@
                                 <!-- Menu Items -->
                                 <div class="p-2">
                                     @if ($user?->hasAnyRole(['super_admin', 'admin']))
-                                        <a href="{{ route('filament.admin.pages.dashboard') }}" target="_blank" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
+                                        <a href="{{ route('filament.admin.pages.admin-dashboard') }}" target="_blank" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
                                             <svg class="h-4 w-4 text-[#2563eb]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 19h18M7 16V8m5 8V4m5 12v-6"/></svg>
                                             {{ __('site.auth.admin_panel') }}
                                         </a>
                                     @endif
 
                                     @if ($user?->hasAnyRole(['student', 'teacher']))
-                                        <a href="{{ route('filament.admin.pages.dashboard') }}" target="_blank" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
+                                        <a href="{{ route('filament.admin.pages.admin-dashboard') }}" target="_blank" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
                                             <svg class="h-4 w-4 text-[#2563eb]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M9 6V5a3 3 0 0 1 3-3 3 3 0 0 1 3 3v1" />
                                                 <path d="M4 9h16" />
@@ -308,13 +308,13 @@
                     @if (Route::has('login'))
                         @auth
                             @if (Auth::user()?->hasAnyRole(['super_admin','admin']))
-                                <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87]">
+                                <a href="{{ route('filament.admin.pages.admin-dashboard') }}" class="block w-full rounded-lg bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87]">
                                     {{ __('site.auth.admin_panel') }}
                                 </a>
                             @endif
 
                             @if (Auth::user()?->hasAnyRole(['student', 'teacher']))
-                                <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87]">
+                                <a href="{{ route('filament.admin.pages.admin-dashboard') }}" class="block w-full rounded-lg bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87]">
                                     {{ __('site.auth.my_space') }}
                                 </a>
                             @endif

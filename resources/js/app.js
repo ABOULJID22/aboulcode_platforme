@@ -4,6 +4,223 @@ import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 
+function createNavbarSearch(initialQuery = '') {
+    return {
+        mobileMenuOpen: false,
+        userMenuOpen: false,
+        isSearchOpen: false,
+        searchQuery: initialQuery || '',
+
+        openSearch() {
+            this.isSearchOpen = true;
+            this.userMenuOpen = false;
+            this.mobileMenuOpen = false;
+            this.focusSearch();
+        },
+
+        closeSearch() {
+            this.isSearchOpen = false;
+        },
+
+        toggleSearch() {
+            if (this.isSearchOpen) {
+                this.closeSearch();
+                return;
+            }
+
+            this.openSearch();
+        },
+
+        focusSearch() {
+            this.$nextTick(() => {
+                this.$refs.searchInput?.focus({ preventScroll: true });
+            });
+        },
+
+        handleSearchShortcut(event) {
+            if (event.key === 'Escape') {
+                this.closeSearch();
+                return;
+            }
+
+            if (event.key !== '/' || event.ctrlKey || event.metaKey || event.altKey) {
+                return;
+            }
+
+            const target = event.target;
+            const typingTarget = target?.isContentEditable
+                || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target?.tagName);
+
+            if (typingTarget) {
+                return;
+            }
+
+            event.preventDefault();
+
+            if (!this.isSearchOpen) {
+                this.openSearch();
+                return;
+            }
+
+            this.focusSearch();
+        },
+    };
+}
+
+window.navbarSearch = createNavbarSearch;
+
+function createSignupPage(config = {}) {
+    return {
+        formData: {
+            name: config.name || '',
+            email: config.email || '',
+            password: '',
+            password_confirmation: '',
+            terms: false,
+        },
+        selectedRole: config.role || 'student',
+        errors: {},
+        showPassword: false,
+        showConfirmPassword: false,
+        loading: false,
+
+        passwordChecks() {
+            const value = this.formData.password || '';
+
+            return {
+                length: value.length >= 8,
+                letter: /[A-Za-z]/.test(value),
+                number: /[0-9]/.test(value),
+                special: /[^A-Za-z0-9]/.test(value),
+            };
+        },
+
+        passwordRuleMet(rule) {
+            return Boolean(this.passwordChecks()[rule]);
+        },
+
+        isValidEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        },
+
+        validate() {
+            const errors = {};
+            const checks = this.passwordChecks();
+
+            if (!['student', 'teacher'].includes(this.selectedRole)) {
+                errors.user_type = 'Please choose a profile type.';
+            }
+
+            if (!this.formData.name.trim()) {
+                errors.name = 'Full name is required.';
+            }
+
+            if (!this.formData.email.trim()) {
+                errors.email = 'Email is required.';
+            } else if (!this.isValidEmail(this.formData.email)) {
+                errors.email = 'Please enter a valid email address.';
+            }
+
+            if (!this.formData.password) {
+                errors.password = 'Password is required.';
+            } else if (!(checks.length && checks.letter && checks.number && checks.special)) {
+                errors.password = 'Password must match all requirements.';
+            }
+
+            if (!this.formData.password_confirmation) {
+                errors.password_confirmation = 'Please confirm your password.';
+            } else if (this.formData.password_confirmation !== this.formData.password) {
+                errors.password_confirmation = 'Passwords do not match.';
+            }
+
+            if (!this.formData.terms) {
+                errors.terms = 'You must accept the terms and privacy policy.';
+            }
+
+            this.errors = errors;
+
+            return Object.keys(errors).length === 0;
+        },
+
+        clearError(field) {
+            if (this.errors[field]) {
+                delete this.errors[field];
+                this.errors = { ...this.errors };
+            }
+        },
+
+        handleSubmit(event) {
+            if (!this.validate()) {
+                event.preventDefault();
+                this.loading = false;
+                return;
+            }
+
+            this.loading = true;
+        },
+    };
+}
+
+function createLoginPage(config = {}) {
+    return {
+        email: config.email || '',
+        password: '',
+        rememberMe: Boolean(config.rememberMe),
+        showPassword: false,
+        errors: config.hasServerErrors ? { general: 'The email or password is incorrect.' } : {},
+        loading: false,
+
+        isValidEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        },
+
+        validate() {
+            const errors = {};
+
+            if (!this.email.trim()) {
+                errors.email = 'Email is required.';
+            } else if (!this.isValidEmail(this.email)) {
+                errors.email = 'Please enter a valid email address.';
+            }
+
+            if (!this.password) {
+                errors.password = 'Password is required.';
+            }
+
+            this.errors = errors;
+
+            return Object.keys(errors).length === 0;
+        },
+
+        clearError(field) {
+            if (this.errors[field]) {
+                delete this.errors[field];
+                this.errors = { ...this.errors };
+            }
+
+            if (this.errors.general) {
+                delete this.errors.general;
+                this.errors = { ...this.errors };
+            }
+        },
+
+        handleSubmit(event) {
+            if (!this.validate()) {
+                event.preventDefault();
+                this.loading = false;
+                return;
+            }
+
+            this.loading = true;
+        },
+    };
+}
+window.signupPage = createSignupPage;
+window.loginPage = createLoginPage;
+
+Alpine.data('navbarSearch', createNavbarSearch);
+Alpine.data('signupPage', createSignupPage);
+Alpine.data('loginPage', createLoginPage);
 Alpine.start();
 
 
