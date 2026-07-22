@@ -147,20 +147,10 @@ Route::post('/client/support', function (\Illuminate\Http\Request $request) {
     }
 
     app(\App\Services\Notifications\PlatformNotificationService::class)->notifyContactMessage($contact);
+        require __DIR__.'/web_aboulcode.php';
 
-    try {
-        \Illuminate\Support\Facades\Mail::to(config('mail.from.address'))
-            ->queue(new \App\Mail\ContactMessageMail($contact));
-    } catch (\Throwable $e) {
-        // ignore mail errors
-    }
-
-    return back()->with('status', 'Message envoyé');
-})->name('client.support.submit')->middleware(['web', 'auth']);
-
-
-
-
+        // Keep legacy routes file but avoid exposing orientation-specific public routes.
+        // Legacy routes remain in the repo for migration but are no longer auto-loaded here.
 Route::get('/files/public/view/{path}', [AttachmentController::class, 'viewPublic'])
     ->where('path', '.*')
     ->name('attachments.public.view');
