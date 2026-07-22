@@ -8,29 +8,15 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('aboulcode.home');
-})->name('aboulcode.home');
+use App\Http\Controllers\Aboulcode\PublicController;
 
-Route::get('/projets', function () {
-    return view('aboulcode.projects.index');
-})->name('aboulcode.projects.index');
-
-Route::get('/services', function () {
-    return view('aboulcode.services.index');
-})->name('aboulcode.services.index');
-
-Route::get('/blog', function () {
-    return view('aboulcode.blog.index');
-})->name('aboulcode.blog.index');
-
-Route::get('/a-propos', function () {
-    return view('aboulcode.about');
-})->name('aboulcode.about');
-
-Route::get('/contact', function () {
-    return view('aboulcode.contact');
-})->name('aboulcode.contact');
+Route::get('/', [PublicController::class, 'home'])->name('aboulcode.home');
+Route::get('/projets', [PublicController::class, 'projects'])->name('aboulcode.projects.index');
+Route::get('/services', [PublicController::class, 'services'])->name('aboulcode.services.index');
+Route::get('/blog', [PublicController::class, 'blog'])->name('aboulcode.blog.index');
+Route::get('/a-propos', [PublicController::class, 'about'])->name('aboulcode.about');
+Route::get('/contact', [PublicController::class, 'contactForm'])->name('aboulcode.contact');
+Route::post('/contact', [PublicController::class, 'submitContact'])->name('aboulcode.contact.submit');
 
 // Admin auth
 Route::get('/abouadmin', [\App\Http\Controllers\Aboulcode\AdminAuthController::class, 'showLogin']);
