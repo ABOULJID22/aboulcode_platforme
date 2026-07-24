@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Domain;
 use App\Models\Noservice;
 use App\Models\Post;
-use App\Models\ResourceContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -23,12 +21,7 @@ class GlobalSearchController extends Controller
         $sections = collect([
             'posts' => [
                 'label' => 'Articles',
-                'description' => 'Conseils, actualites et guides OrientationTech.',
-                'items' => collect(),
-            ],
-            'domains' => [
-                'label' => 'Domaines',
-                'description' => 'Specialites numeriques, competences et metiers.',
+                'description' => 'Conseils, actualites et guides ABOULCODE.',
                 'items' => collect(),
             ],
             'resources' => [
@@ -38,7 +31,7 @@ class GlobalSearchController extends Controller
             ],
             'services' => [
                 'label' => 'Services',
-                'description' => 'Accompagnement et parcours OrientationTech.',
+                'description' => 'Accompagnement et parcours ABOULCODE.',
                 'items' => collect(),
             ],
             'pages' => [
@@ -51,7 +44,6 @@ class GlobalSearchController extends Controller
         if ($hasQuery) {
             $sections = $sections->replace([
                 'posts' => array_merge($sections['posts'], ['items' => $this->searchPosts($query)]),
-                'domains' => array_merge($sections['domains'], ['items' => $this->searchDomains($query)]),
                 'resources' => array_merge($sections['resources'], ['items' => $this->searchResources($query)]),
                 'services' => array_merge($sections['services'], ['items' => $this->searchServices($query)]),
                 'pages' => array_merge($sections['pages'], ['items' => $this->searchStaticPages($query)]),
@@ -60,7 +52,6 @@ class GlobalSearchController extends Controller
 
         $totalResults = $sections->sum(fn (array $section): int => $section['items']->count());
         $quickLinks = collect([
-            ['label' => 'Domaines numeriques', 'url' => route('domains.index')],
             ['label' => 'Blog', 'url' => route('pages.blog.index')],
             ['label' => 'Services', 'url' => route('noservices')],
             ['label' => 'Contact', 'url' => route('contact.create')],
@@ -107,63 +98,7 @@ class GlobalSearchController extends Controller
             ]);
     }
 
-    private function searchDomains(string $term): Collection
-    {
-        if (! Schema::hasTable('domains')) {
-            return collect();
-        }
-
-        $locales = $this->locales();
-        $translatedColumns = $this->existingColumns('domains', ['name', 'short_description', 'full_description', 'why_important', 'keywords', 'start_tips']);
-        $plainColumns = $this->existingColumns('domains', ['category', 'difficulty_level', 'future_potential', 'ai_impact', 'global_demand', 'morocco_demand']);
-
-        return Domain::query()
-            ->active()
-            ->where(function (Builder $query) use ($term, $translatedColumns, $plainColumns, $locales): void {
-                $this->orWhereTranslatedLike($query, $translatedColumns, $term, $locales);
-                $this->orWhereLike($query, $plainColumns, $term);
-            })
-            ->orderByDesc('is_featured')
-            ->orderByDesc('rating_average')
-            ->limit(8)
-            ->get()
-            ->map(fn (Domain $domain): array => [
-                'title' => (string) $domain->name,
-                'summary' => $this->excerpt($domain->short_description ?: $domain->full_description),
-                'url' => route('domains.show', $domain),
-                'meta' => collect([$domain->category, $domain->difficulty_level, $domain->future_potential])->filter()->implode(' · '),
-                'badge' => 'Domaine',
-            ]);
-    }
-
-    private function searchResources(string $term): Collection
-    {
-        if (! Schema::hasTable('resource_contents')) {
-            return collect();
-        }
-
-        $locales = $this->locales();
-        $translatedColumns = $this->existingColumns('resource_contents', ['title', 'summary', 'content']);
-        $plainColumns = $this->existingColumns('resource_contents', ['type', 'domain_key', 'career_name']);
-
-        return ResourceContent::query()
-            ->published()
-            ->where(function (Builder $query) use ($term, $translatedColumns, $plainColumns, $locales): void {
-                $this->orWhereTranslatedLike($query, $translatedColumns, $term, $locales);
-                $this->orWhereLike($query, $plainColumns, $term);
-            })
-            ->orderByDesc('is_featured')
-            ->latest('published_at')
-            ->limit(8)
-            ->get()
-            ->map(fn (ResourceContent $resource): array => [
-                'title' => (string) $resource->title,
-                'summary' => $this->excerpt($resource->summary ?: $resource->content),
-                'url' => route('pages.resources.show', $resource),
-                'meta' => collect([$resource->type_label, $resource->domain_key, $resource->career_name])->filter()->implode(' · '),
-                'badge' => 'Ressource',
-            ]);
-    }
+    
 
     private function searchServices(string $term): Collection
     {
@@ -192,14 +127,14 @@ class GlobalSearchController extends Controller
             ->limit(6)
             ->get()
             ->map(function (Noservice $service): array {
-                $title = $service->titre ?: $service->title ?: 'Service OrientationTech';
+                $title = $service->titre ?: $service->title ?: 'Service ABOULCODE';
                 $summary = $service->soustitre ?: $service->subtitle ?: $service->resultats ?: $service->result;
 
                 return [
                     'title' => $title,
                     'summary' => $this->excerpt($summary),
                     'url' => route('noservices'),
-                    'meta' => 'OrientationTech',
+                    'meta' => 'ABOULCODE',
                     'badge' => 'Service',
                 ];
             });
@@ -222,18 +157,11 @@ class GlobalSearchController extends Controller
                 'title' => 'Services',
                 'summary' => 'Accompagnement, diagnostic, orientation et parcours personnalise.',
                 'url' => route('noservices'),
-                'meta' => 'OrientationTech',
+                'meta' => 'ABOULCODE',
                 'badge' => 'Page',
                 'keywords' => 'services accompagnement orientation diagnostic conseil eleve',
             ],
-            [
-                'title' => 'Domaines numeriques',
-                'summary' => 'Explorer les specialites informatiques et comparer les opportunites.',
-                'url' => route('domains.index'),
-                'meta' => 'Explorer',
-                'badge' => 'Page',
-                'keywords' => 'domaines numerique informatique data cybersecurite developpement ia cloud ux',
-            ],
+
             [
                 'title' => 'Blog',
                 'summary' => 'Articles, conseils et actualites pour mieux choisir son parcours.',
@@ -244,7 +172,7 @@ class GlobalSearchController extends Controller
             ],
             [
                 'title' => 'Contact',
-                'summary' => 'Contacter l equipe OrientationTech.',
+                'summary' => 'Contacter l equipe ABOULCODE.',
                 'url' => route('contact.create'),
                 'meta' => 'Support',
                 'badge' => 'Page',
@@ -301,11 +229,11 @@ class GlobalSearchController extends Controller
     {
         $text = trim(preg_replace('/\s+/', ' ', strip_tags((string) $value)) ?: '');
 
-        return $text !== '' ? Str::limit($text, $limit) : 'Contenu disponible sur OrientationTech.';
+        return $text !== '' ? Str::limit($text, $limit) : 'Contenu disponible sur ABOULCODE.';
     }
 
     private function locales(): array
     {
-        return array_keys(config('orientationtech.supported_locales', ['fr' => 'Francais', 'en' => 'English']));
+        return array_keys(config('ABOULCODE.supported_locales', ['fr' => 'Francais', 'en' => 'English']));
     }
 }

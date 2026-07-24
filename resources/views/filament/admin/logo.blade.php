@@ -64,8 +64,8 @@
 
 <div class="logo-box">
     {{-- Light mode logo: visible by default, hidden in dark mode --}}
-    <img src="{{ $logo }}" alt="OrientationTech Logo" class="h-12 mb-4 block dark:hidden" />
+    <img src="{{ $logo }}" alt="ABOULCODE Logo" class="h-12 mb-4 block dark:hidden" />
 
     {{-- Dark mode logo: hidden by default, visible when .dark class is present --}}
-    <img src="{{ $logoDark }}" alt="OrientationTech Logo (dark)" class="h-12 mb-4 hidden dark:block" />
+    <img src="{{ $logoDark }}" alt="ABOULCODE Logo (dark)" class="h-12 mb-4 hidden dark:block" />
 </div>

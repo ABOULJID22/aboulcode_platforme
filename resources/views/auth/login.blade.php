@@ -27,11 +27,11 @@
 
                 <div class="mb-8 text-center">
                     <span class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-white text-[#2563eb] shadow-[0_18px_45px_rgba(15,23,42,0.18)] dark:bg-slate-950">
-                        <img src="{{ asset('images/logo.png') }}" alt="OrientationTech" class="h-12 w-12 object-contain">
+                        <img src="{{ asset('images/logo.png') }}" alt="ABOULCODE" class="h-12 w-12 object-contain">
                     </span>
                     <h1 class="font-libre-baskerville text-3xl font-bold leading-tight text-slate-950 sm:text-4xl dark:text-white">
                         Welcome back to<br>
-                        <span class="text-[#2563eb]">OrientationTech</span>
+                        <span class="text-[#2563eb]">ABOULCODE</span>
                     </h1>
                     <p class="mx-auto mt-4 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300">
                         Sign in to continue your journey and unlock your potential.

@@ -23,7 +23,7 @@ return [
     ],
 
     'hero' => [
-        'title' => 'Discover your potential with <span class="text-[#2563eb]">OrientationTech</span>.',
+        'title' => 'Discover your potential with <span class="text-[#2563eb]">ABOULCODE</span>.',
         'cta_appointment' => 'Start my orientation',
         'cta_contact' => 'Contact us',
         'video_not_supported' => 'Your browser does not support the video tag.',
@@ -32,16 +32,16 @@ return [
     'about' => [
         'title' => 'Who are we?',
         'subtitle_html' => 'An intelligent platform guiding Moroccan students toward digital careers',
-        'p1' => "OrientationTech helps students discover their potential, Ikigai, personality and the digital fields that best match their profile. The platform combines artificial intelligence, educational sciences and career guidance psychology to provide clear, progressive and personalized orientation.",
+        'p1' => "ABOULCODE helps students discover their potential, Ikigai, personality and the digital fields that best match their profile. The platform combines artificial intelligence, educational sciences and career guidance psychology to provide clear, progressive and personalized orientation.",
         'quote' => 'Our goal is to help each student understand who they are, identify their strengths and build a coherent path toward higher education and future careers.',
         'stats_clients' => 'Profiles analyzed',
         'stats_services' => 'Digital fields',
     ],
 
     'services' => [
-        'title' => 'OrientationTech: AI-powered school guidance',
+        'title' => 'ABOULCODE: AI-powered school guidance',
         'subtitle' => 'We help students connect their answers, skills and ambitions to high-potential digital fields.',
-        'desc' => "OrientationTech analyzes the academic profile, initial diagnostic, Ikigai, personality, interests and motivations to generate personalized and easy-to-understand recommendations.",
+        'desc' => "ABOULCODE analyzes the academic profile, initial diagnostic, Ikigai, personality, interests and motivations to generate personalized and easy-to-understand recommendations.",
         'label_presentation' => 'Overview',
         'adv1_title' => 'Initial diagnostic',
         'adv1_desc' => 'Understand level, favorite subjects, interests and goals.',
@@ -55,7 +55,7 @@ return [
     ],
 
     'why' => [
-        'title' => 'Why choose <span class="text-[#2563eb] dark:text-blue-400 block sm:inline-block mt-2 sm:mt-0">OrientationTech?</span>',
+        'title' => 'Why choose <span class="text-[#2563eb] dark:text-blue-400 block sm:inline-block mt-2 sm:mt-0">ABOULCODE?</span>',
         'subtitle' => 'A student-centered approach adapted to the Moroccan context and supported by artificial intelligence.',
         'c1_title' => 'Complete profile',
         'c1_desc' => 'The analysis goes beyond grades and includes interests, motivations, values and personality.',
@@ -69,9 +69,9 @@ return [
 
     'faq' => [
         'title' => 'Frequently Asked Questions',
-        'subtitle' => 'Understand how OrientationTech supports guidance toward digital careers.',
-        'q1' => 'Does OrientationTech replace a career counselor?',
-        'a1' => 'No. OrientationTech is a decision-support tool. It provides clear and personalized analysis to enrich the support provided to students, parents and teachers.',
+        'subtitle' => 'Understand how ABOULCODE supports guidance toward digital careers.',
+        'q1' => 'Does ABOULCODE replace a career counselor?',
+        'a1' => 'No. ABOULCODE is a decision-support tool. It provides clear and personalized analysis to enrich the support provided to students, parents and teachers.',
         'q2' => 'Which results are analyzed?',
         'a2' => 'The platform combines the academic profile, initial diagnostic, Ikigai, personality test, skills, interests and career ambitions.',
         'q3' => 'Are recommendations limited to web development?',
@@ -116,7 +116,7 @@ return [
         'title' => 'Contact us',
         'subtitle' => 'Have a question about orientation, tests or how to use the platform?',
         'heading' => 'CONTACT US',
-        'desc' => 'Our team can help you understand OrientationTech, result analysis, orientation reports and student support toward digital careers.',
+        'desc' => 'Our team can help you understand ABOULCODE, result analysis, orientation reports and student support toward digital careers.',
         'address' => 'Address',
         'phone' => 'Phone',
         'email' => 'E-mail',
@@ -162,9 +162,9 @@ return [
         'email' => 'E-mail',
         'phone' => 'Phone',
         'address' => 'Address',
-        'desc' => 'OrientationTech guides Moroccan students toward digital careers through artificial intelligence.',
+        'desc' => 'ABOULCODE guides Moroccan students toward digital careers through artificial intelligence.',
         'copyright' => 'All rights reserved.',
-        'made_with' => 'Made with care by the OrientationTech team',
+        'made_with' => 'Made with care by the ABOULCODE team',
         'open_source' => 'Intelligent guidance',
         'community' => 'Education and AI',
         'trust_badge' => 'Intelligent orientation advisor',

@@ -16,7 +16,6 @@
             ['label' => __('site.nav.home'), 'href' => $homeUrl],
             ['label' => __('site.nav.about'), 'href' => $base . '#about'],
             ['label' => __('site.nav.services'), 'href' => $base . '#services'],
-            ['label' => __('site.nav.domains'), 'href' => route('domains.index')],
             ['label' => __('site.nav.blog'), 'href' => route('pages.blog.index')],
         ];
 
@@ -30,14 +29,13 @@
 
         $quickActions = [
             ['label' => __('site.footer.start_orientation'), 'href' => $base . '#how', 'primary' => true],
-            ['label' => __('site.footer.explore_domains'), 'href' => route('domains.index'), 'primary' => false],
             ['label' => __('site.footer.contact_us'), 'href' => $base . '#contact', 'primary' => false],
         ];
 
         $socialLinks = [
-            ['label' => 'LinkedIn', 'icon' => 'linkedin', 'href' => $siteSettings?->linkedin_url ?? 'https://www.linkedin.com/company/OrientationTech'],
-            ['label' => 'Instagram', 'icon' => 'instagram', 'href' => $siteSettings?->instagram_url ?? 'https://www.instagram.com/Orientationtech.ma'],
-            ['label' => 'YouTube', 'icon' => 'youtube', 'href' => $siteSettings?->youtube_url ?? 'https://youtube.com/@OrientationTech'],
+            ['label' => 'LinkedIn', 'icon' => 'linkedin', 'href' => $siteSettings?->linkedin_url ?? 'https://www.linkedin.com/company/ABOULCODE'],
+            ['label' => 'Instagram', 'icon' => 'instagram', 'href' => $siteSettings?->instagram_url ?? 'https://www.instagram.com/ABOULCODE.ma'],
+            ['label' => 'YouTube', 'icon' => 'youtube', 'href' => $siteSettings?->youtube_url ?? 'https://youtube.com/@ABOULCODE'],
             ['label' => 'Facebook', 'icon' => 'facebook', 'href' => $siteSettings?->facebook_url ?? 'https://www.facebook.com/'],
         ];
 
@@ -48,7 +46,7 @@
         <div class="grid gap-10 border-b border-white/20 pb-10 sm:gap-8 lg:grid-cols-[1.35fr_.85fr_.95fr_.95fr_1.15fr] lg:pb-12">
             <div class="space-y-5">
                 <a href="{{ $homeUrl }}" class="inline-flex items-center focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-[#172554]" aria-label="{{ __('site.aria.home') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-14 w-auto opacity-95 transition hover:scale-105 hover:opacity-100 sm:h-16">
+                    <img src="{{ asset('images/logo.png') }}" alt="ABOULCODE Logo" class="h-14 w-auto opacity-95 transition hover:scale-105 hover:opacity-100 sm:h-16">
                 </a>
 
                 <p class="max-w-sm text-sm leading-7 text-white/80">
@@ -150,7 +148,7 @@
                 </div>
 
                 <div class="mt-6 space-y-3 rounded-xl border border-white/20 bg-white/10 p-4 text-sm text-white/75">
-                    <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
+                    <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@ABOULCODE.ma' }}</p>
                     <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+212 71549452' }}</p>
                     <p class="leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? 'Agadir, 85000 Tiznit, Maroc' }}</p>
                 </div>
@@ -165,7 +163,7 @@
                 @else
                     2025
                 @endif
-                OrientationTech. {{ __('site.footer.copyright') }}
+                ABOULCODE. {{ __('site.footer.copyright') }}
             </p>
             <p>{!! __('site.footer.made_with') !!}</p>
         </div>

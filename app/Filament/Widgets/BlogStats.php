@@ -4,7 +4,6 @@ namespace App\Filament\Widgets;
 
 use App\Models\AcademicDiagnostic;
 use App\Models\Post;
-use App\Models\ResourceContent;
 use App\Models\TestPersonnalise;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -23,8 +22,6 @@ class BlogStats extends BaseWidget
         $isTeacher = (bool) ($user?->isTeacher() && ! $user?->isSuperAdmin());
 
         $postsQuery = Post::query();
-        $hasResourceContentsTable = Schema::hasTable('resource_contents');
-        $resourcesQuery = $hasResourceContentsTable ? ResourceContent::query() : null;
 
         if ($isTeacher) {
             $postsQuery->where('author_id', $user->id);
@@ -38,7 +35,6 @@ class BlogStats extends BaseWidget
         $totalViews = (clone $postsQuery)->sum('views_count');
         $totalLikes = (clone $postsQuery)->sum('likes_count');
         $totalComments = (clone $postsQuery)->sum('comments_count');
-        $publishedResources = $resourcesQuery ? (clone $resourcesQuery)->where('status', ResourceContent::STATUS_PUBLISHED)->count() : 0;
         $recentResources = $resourcesQuery ? (clone $resourcesQuery)->where('created_at', '>=', now()->subDays(30))->count() : 0;
         $completedDiagnostics = AcademicDiagnostic::query()->where('status', 'completed')->count();
         $completedPersonalities = TestPersonnalise::query()->where('status', 'completed')->count();
@@ -152,23 +148,5 @@ class BlogStats extends BaseWidget
             ->all();
     }
 
-    private function monthlyResourcesChart(?string $teacherId = null): array
-    {
-        if (! Schema::hasTable('resource_contents')) {
-            return [0, 0, 0, 0, 0, 0];
-        }
-
-        return collect(range(5, 0))
-            ->map(function (int $monthsAgo) use ($teacherId): int {
-                return ResourceContent::query()
-                    ->when($teacherId, fn (Builder $query): Builder => $query->where('teacher_id', $teacherId))
-                    ->whereBetween('created_at', [
-                        now()->subMonths($monthsAgo)->startOfMonth(),
-                        now()->subMonths($monthsAgo)->endOfMonth(),
-                    ])
-                    ->count();
-            })
-            ->values()
-            ->all();
-    }
+   
 }

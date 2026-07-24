@@ -4,7 +4,6 @@ namespace App\Filament\Widgets;
 
 use App\Models\Contact;
 use App\Models\Post;
-use App\Models\ResourceContent;
 use Filament\Widgets\Widget;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Schema;
@@ -28,13 +27,7 @@ class ContentGuidanceOverviewWidget extends Widget
                 ->latest()
                 ->limit(5)
                 ->get(['id', 'title', 'created_at']),
-            'recentResources' => Schema::hasTable('resource_contents')
-                ? ResourceContent::query()
-                    ->when($isTeacher, fn (Builder $query): Builder => $query->where('teacher_id', $user->id))
-                    ->latest()
-                    ->limit(5)
-                    ->get(['id', 'type', 'title', 'created_at'])
-                : collect(),
+           
             'pendingContacts' => Contact::query()
                 ->whereNull('replied_at')
                 ->latest()

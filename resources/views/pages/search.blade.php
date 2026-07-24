@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recherche - OrientationTech</title>
+    <title>Recherche - ABOULCODE</title>
     @include('layouts.favicon')
     @include('layouts.theme-init')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -16,7 +16,7 @@
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:py-12">
             <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr),22rem] lg:items-end">
                 <div>
-                    <p class="mb-0 text-xs font-extrabold uppercase tracking-[0.22em] text-[#2563eb] dark:text-blue-300">OrientationTech</p>
+                    <p class="mb-0 text-xs font-extrabold uppercase tracking-[0.22em] text-[#2563eb] dark:text-blue-300">ABOULCODE</p>
                     <h1 class="mb-0 mt-3 text-3xl font-black tracking-tight text-gray-950 sm:text-4xl dark:text-white">Recherche globale</h1>
                     <p class="mb-0 mt-3 max-w-2xl text-sm leading-6 text-gray-600 sm:text-base dark:text-gray-300">
                         Articles, domaines, ressources, services et pages publiques.

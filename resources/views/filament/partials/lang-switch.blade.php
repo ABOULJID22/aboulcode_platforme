@@ -25,7 +25,7 @@
         </nav>
 
         <button
-            x-data="OrientationTechThemeToggle()"
+            x-data="ABOULCODEThemeToggle()"
             x-on:click="toggle()"
             type="button"
             class="fi-theme-toggle"
@@ -57,7 +57,7 @@
 @once
     @push('scripts')
         <script>
-            window.OrientationTechThemeToggle = function () {
+            window.ABOULCODEThemeToggle = function () {
                 return {
                     isDark: document.documentElement.classList.contains('dark'),
                     init() {

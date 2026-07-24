@@ -9,7 +9,7 @@
             <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#2563eb]">Profil {{ $roleLabel }}</p>
             <h2 class="mt-2 text-2xl font-black text-slate-950">Informations personnelles</h2>
             <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-                Ces informations permettent a OrientationTech de personnaliser l'accompagnement, securiser ton compte et ameliorer les echanges sur la plateforme.
+                Ces informations permettent a ABOULCODE de personnaliser l'accompagnement, securiser ton compte et ameliorer les echanges sur la plateforme.
             </p>
         </div>
         <span class="inline-flex w-fit items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#2563eb] ring-1 ring-blue-100">

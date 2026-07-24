@@ -45,8 +45,8 @@
                             // fallback kept
                         }
                     @endphp
-                    <img src="{{ $logoUrl }}" alt="OrientationTech Logo">
-                    <h1>OrientationTech — Réponse</h1>
+                    <img src="{{ $logoUrl }}" alt="ABOULCODE Logo">
+                    <h1>ABOULCODE — Réponse</h1>
                 </div>
             </div>
 
@@ -60,8 +60,8 @@
 
             <div class="email-footer">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-                    <div>Envoyé automatiquement depuis le formulaire de contact du site OrientationTech.</div>
-                    <div><a href="https://Orientationtech.ma" class="btn">Voir le site</a></div>
+                    <div>Envoyé automatiquement depuis le formulaire de contact du site ABOULCODE.</div>
+                    <div><a href="https://ABOULCODE.ma" class="btn">Voir le site</a></div>
                 </div>
             </div>
         </div>

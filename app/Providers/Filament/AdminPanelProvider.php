@@ -39,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::hex('#2563eb'),
             ])
             ->darkMode()
-            ->brandName('OrientationTech')
+            ->brandName('ABOULCODE')
             ->brandLogo(fn () => view('filament.admin.logo'))
             ->favicon(asset('favicon.png'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
@@ -48,34 +48,10 @@ class AdminPanelProvider extends PanelProvider
                 AdminDashboard::class,
             ])
             ->navigationGroups([
-                NavigationGroup::make(fn (): string => __('filament.nav.groups.principal'))
-                    ->collapsible(false),
-                NavigationGroup::make(fn (): string => __('filament.nav.groups.administration'))
-                    ->collapsible(false),
-                NavigationGroup::make(fn (): string => __('filament.nav.groups.support'))
-                    ->collapsible(false),
-                NavigationGroup::make(fn (): string => __('filament.nav.groups.content'))
-                    ->collapsible(false),
-                NavigationGroup::make(fn (): string => __('filament.nav.groups.blog'))
-                    ->collapsible(false),
-                NavigationGroup::make(fn (): string => __('filament.nav.groups.my_orientation')),
-            ])
+                           ])
             //->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                \App\Filament\Widgets\OrientationKpiOverviewWidget::class,
-                \App\Filament\Widgets\RegistrationsOverviewChart::class,
-                \App\Filament\Widgets\RecommendedDomainsWidget::class,
-                \App\Filament\Widgets\OrientationInsightsWidget::class,
-                \App\Filament\Widgets\RecentAdminActivityWidget::class,
-                \App\Filament\Widgets\QuickActionsWidget::class,
-                \App\Filament\Widgets\StudentDashboardStats::class,
-                \App\Filament\Widgets\StudentPersonalityRadarChart::class,
-                \App\Filament\Widgets\StudentDomainCompatibilityChart::class,
-                \App\Filament\Widgets\StudentOrientationSummaryWidget::class,
-                \App\Filament\Widgets\AdminDashboardStats::class,
-                \App\Filament\Widgets\AdminRegistrationsChart::class,
-                \App\Filament\Widgets\AdminDomainTrendsChart::class,
-                \App\Filament\Widgets\AdminPlatformOverviewWidget::class,
+               
                 BlogStats::class,
                 ContentGuidanceOverviewWidget::class,
                 \App\Filament\Widgets\AdminDashboardFooterWidget::class,

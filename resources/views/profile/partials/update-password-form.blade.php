@@ -6,7 +6,7 @@
             <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#2563eb]">Securite</p>
             <h2 class="mt-2 {{ $compact ? 'text-xl' : 'text-2xl' }} font-black text-slate-950">Mot de passe</h2>
             <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
-                Utilise un mot de passe long et unique pour proteger ton espace OrientationTech, tes resultats et tes interactions.
+                Utilise un mot de passe long et unique pour proteger ton espace ABOULCODE, tes resultats et tes interactions.
             </p>
         </div>
         <span class="inline-flex w-fit items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#2563eb] ring-1 ring-blue-100">

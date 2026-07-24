@@ -32,10 +32,10 @@ class DashboardStatisticsSeeder extends Seeder
     private function seedTeachers(): void
     {
         $teachers = [
-            ['name' => 'Nadia El Amrani', 'email' => 'demo.teacher.casablanca@orientationtech.ma', 'city' => 'Casablanca'],
-            ['name' => 'Youssef Bennani', 'email' => 'demo.teacher.rabat@orientationtech.ma', 'city' => 'Rabat'],
-            ['name' => 'Imane Tazi', 'email' => 'demo.teacher.fes@orientationtech.ma', 'city' => 'Fes'],
-            ['name' => 'Omar Ait Lahcen', 'email' => 'demo.teacher.marrakech@orientationtech.ma', 'city' => 'Marrakech'],
+            ['name' => 'Nadia El Amrani', 'email' => 'demo.teacher.casablanca@ABOULCODE.ma', 'city' => 'Casablanca'],
+            ['name' => 'Youssef Bennani', 'email' => 'demo.teacher.rabat@ABOULCODE.ma', 'city' => 'Rabat'],
+            ['name' => 'Imane Tazi', 'email' => 'demo.teacher.fes@ABOULCODE.ma', 'city' => 'Fes'],
+            ['name' => 'Omar Ait Lahcen', 'email' => 'demo.teacher.marrakech@ABOULCODE.ma', 'city' => 'Marrakech'],
         ];
 
         foreach ($teachers as $index => $teacherData) {
@@ -308,7 +308,7 @@ class DashboardStatisticsSeeder extends Seeder
 
             $scenarios[] = [
                 'name' => $name,
-                'email' => 'demo.student.' . str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) . '@orientationtech.ma',
+                'email' => 'demo.student.' . str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) . '@ABOULCODE.ma',
                 'city' => $school[1],
                 'school_name' => $school[0],
                 'school_type' => $school[2],

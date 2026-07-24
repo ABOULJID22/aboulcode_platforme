@@ -4,7 +4,7 @@
 
         $roleKey = 'student';
         $roleLabel = 'Eleve';
-        $roleDescription = 'Ton espace personnel centralise ton profil, tes informations scolaires et ton parcours OrientationTech.';
+        $roleDescription = 'Ton espace personnel centralise ton profil, tes informations scolaires et ton parcours ABOULCODE.';
         $roleBadgeClasses = 'bg-blue-50 text-[#2563eb] ring-blue-100';
         $primaryActionLabel = 'Continuer mon orientation';
         $primaryActionUrl = route('filament.admin.pages.admin-dashboard');

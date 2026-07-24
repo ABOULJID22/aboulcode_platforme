@@ -38,7 +38,7 @@ class ResetPasswordMail extends Mailable
             'resetUrl' => $this->resetUrl,
         ];
 
-        return $this->subject('Réinitialisation du mot de passe — OrientationTech')
+        return $this->subject('Réinitialisation du mot de passe — ABOULCODE')
                     ->view('emails.reset-password')
                     ->with($data);
     }

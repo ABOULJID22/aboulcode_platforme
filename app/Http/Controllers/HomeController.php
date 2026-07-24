@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\ResourceContent;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -23,30 +22,7 @@ class HomeController extends Controller
                 ->get(['id','slug','title','content','cover_image','category_id','published_at','likes_count','favorites_count'])
             : collect();
 
-        $resourceContents = Schema::hasTable('resource_contents')
-            ? ResourceContent::query()
-                ->published()
-                ->latest('is_featured')
-                ->latest('published_at')
-                ->limit(6)
-                ->get([
-                    'id',
-                    'type',
-                    'title',
-                    'slug',
-                    'summary',
-                    'cover_image',
-                    'file_path',
-                    'video_url',
-                    'domain_key',
-                    'career_name',
-                    'views_count',
-                    'likes_count',
-                    'favorites_count',
-                    'published_at',
-                ])
-            : collect();
-
+       
     $onlyVideo = Schema::hasTable('site_settings')
         ? SiteSetting::query()->latest('id')->first(['presentationvideo_url','bgvideo_url'])
         : null;
@@ -91,7 +67,6 @@ class HomeController extends Controller
 
         return view('welcome', [
             'posts' => $posts,
-            'resourceContents' => $resourceContents,
             'presentationVideoSrc' => $resolved,
             'bgVideoSrc' => $bgResolved,
         ]);

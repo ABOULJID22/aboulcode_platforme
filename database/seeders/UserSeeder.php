@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
         Role::firstOrCreate(['name' => User::ROLE_SUPER_ADMIN, 'guard_name' => 'web']);
 
         // Super Admin
-    $email = env('SEED_ADMIN_EMAIL') ?: 'contact@Orientationtech.ma';
+    $email = env('SEED_ADMIN_EMAIL') ?: 'contact@ABOULCODE.ma';
     $plainPassword = env('SEED_ADMIN_PASSWORD')?: 'password123';
 
         if (! $plainPassword) {

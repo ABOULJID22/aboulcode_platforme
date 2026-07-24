@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'OrientationTech') }}</title>
+        <title>{{ config('app.name', 'ABOULCODE') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -36,78 +36,133 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 
 
 
- {{-- HERO --}}
-    <section id="hero" class="relative isolate overflow-hidden bg-[#eff6ff] px-4 pt-24 pb-8 transition-colors dark:bg-slate-950 sm:px-6 sm:pt-28 lg:pt-32">
-        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(96,165,250,.22),transparent_28%),radial-gradient(circle_at_86%_18%,rgba(37,99,235,.16),transparent_30%),linear-gradient(135deg,#ffffff_0%,#f8fbff_48%,#eef5ff_100%)] dark:hidden"></div>
-        <div class="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_16%_18%,rgba(37,99,235,.28),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(96,165,250,.14),transparent_34%),linear-gradient(135deg,#020617_0%,#0f172a_54%,#172554_100%)] dark:block"></div>
-        <div class="pointer-events-none absolute inset-0 opacity-[.35]" style="background-image: radial-gradient(circle at 1px 1px, rgba(37,99,235,.18) 1px, transparent 0); background-size: 26px 26px;"></div>
+{{-- HERO --}}
+<section id="hero" class="relative isolate overflow-hidden bg-[#eff6ff] px-4 pt-24 pb-8 transition-colors dark:bg-slate-950 sm:px-6 sm:pt-28 lg:pt-32">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(96,165,250,.22),transparent_28%),radial-gradient(circle_at_86%_18%,rgba(37,99,235,.16),transparent_30%),linear-gradient(135deg,#ffffff_0%,#f8fbff_48%,#eef5ff_100%)] dark:hidden"></div>
+    <div class="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_16%_18%,rgba(37,99,235,.28),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(96,165,250,.14),transparent_34%),linear-gradient(135deg,#020617_0%,#0f172a_54%,#172554_100%)] dark:block"></div>
+    <div class="pointer-events-none absolute inset-0 opacity-[.35]" style="background-image: radial-gradient(circle at 1px 1px, rgba(37,99,235,.18) 1px, transparent 0); background-size: 26px 26px;"></div>
 
-        <div class="relative mx-auto max-w-7xl">
-            <div class="grid items-center gap-10 lg:grid-cols-[.88fr_1.12fr]">
-                <div class="max-w-2xl">
+    <div class=" min-h-[430px] overflow-hidden lg:min-h-[560px]">
+        <div class="ot-hero-ring ot-hero-ring-slow absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#bfdbfe] opacity-90 dark:border-blue-400/20 sm:h-[430px] sm:w-[430px] lg:h-[520px] lg:w-[520px]"></div>
+        <div class="ot-hero-ring ot-hero-ring-reverse absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#dbeafe] opacity-90 dark:border-blue-300/10 lg:h-[390px] lg:w-[390px]"></div>
+        <div class="ot-hero-dot ot-hero-dot-soft absolute left-[18%] top-[24%] h-3 w-3 rounded-full bg-[#dbeafe] dark:bg-blue-300/30"></div>
+        <div class="ot-hero-dot ot-hero-dot-strong absolute right-[18%] top-[38%] h-6 w-6 rounded-full bg-[#dbeafe] dark:bg-blue-400/20"></div>
+        <div class="ot-hero-glow-pulse absolute bottom-[18%] right-[10%] h-24 w-14 rotate-12 rounded-full bg-[#dbeafe]/70 blur-sm dark:bg-blue-400/10"></div>
+
+        <div class="absolute left-[8%] top-[15%] z-20 hidden rounded-2xl text-center sm:block">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
+                <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 7h7l-5.5 4 2 6.5-5.5-4-5.5 4 2-6.5-5.5-4h7z"/></svg>
+            </div>
+            <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Innovation</p>
+        </div>
+
+        <div class="absolute right-[8%] top-[19%] z-20 hidden rounded-2xl text-center sm:block">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
+                <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Fiabilité</p>
+        </div>
+
+        <div class="absolute left-[2%] bottom-[28%] z-20 hidden rounded-2xl text-center sm:block">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
+                <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm0 2c3.3 0 10 1.7 10 5v3H2v-3c0-3.3 6.7-5 10-5z"/></svg>
+            </div>
+            <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Expertise</p>
+        </div>
+
+        <div class="absolute right-[2%] bottom-[32%] z-20 hidden rounded-2xl text-center sm:block">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
+                <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Performance</p>
+        </div>
+
+        <div class="relative justify-center content-center mx-auto max-w-7xl">
+            <div class="flex flex-col items-center text-center">
+                <div class="max-w-3xl">
                     <h1 class="text-[2.5rem] font-black leading-[1.08] tracking-tight text-[#06133f] dark:text-white sm:text-5xl lg:text-[4rem]">
-                        {!! __('site.hero.headline_html') !!}
+                        Des solutions digitales conçues pour faire grandir
+                        <span class="text-[#2563eb] dark:text-blue-400">votre activité</span>.
                     </h1>
 
-                    <p class="mt-7 max-w-lg text-base leading-8 text-slate-700 dark:text-slate-300">
-                        {{ __('site.hero.subtitle') }}
+                    <p class="mx-auto mt-7 max-w-2xl text-base leading-8 text-slate-700 dark:text-slate-300">
+                        ABOULCODE conçoit et développe des sites web, applications
+                        métier et plateformes digitales sur mesure, pensées pour être
+                        performantes, claires et évolutives.
                     </p>
 
-                    <div class="mt-8 flex flex-wrap gap-4">
+                    <!-- Social proof -->
+                    <div class="mt-6 flex items-center justify-center gap-4 border-t border-slate-200/60 pt-4">
+                        <div class="flex -space-x-2 overflow-hidden">
+                            <img
+                                class="inline-block h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm"
+                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+                                alt="Cliente ABOULCODE"
+                                width="80"
+                                height="80"
+                                loading="lazy"
+                            >
+
+                            <img
+                                class="inline-block h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm"
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+                                alt="Client ABOULCODE"
+                                width="80"
+                                height="80"
+                                loading="lazy"
+                            >
+
+                            <img
+                                class="inline-block h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm"
+                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
+                                alt="Cliente ABOULCODE"
+                                width="80"
+                                height="80"
+                                loading="lazy"
+                            >
+
+                            <img
+                                class="inline-block h-10 w-10 rounded-full object-cover ring-2 ring-white shadow-sm"
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+                                alt="Client ABOULCODE"
+                                width="80"
+                                height="80"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="space-y-0.5 text-left">
+                            <div class="flex gap-0.5 text-amber-400" aria-label="Note moyenne de 5 sur 5">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+
+                            <p class="text-xs font-semibold text-slate-700">
+                                Ils ont fait confiance à ABOULCODE pour leurs projets
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap justify-center gap-4">
                         <a href="{{ route('orientation.start') }}" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-[#2563eb] to-[#1e40af] px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-[#1d4ed8] hover:shadow-xl">
-                            {{ __('site.hero.cta_primary') }}
+                            Demander un devis gratuit
                         </a>
-                        <a href="/domaines-numeriques" class="inline-flex items-center justify-center rounded-lg border border-[#93c5fd] bg-white/80 px-6 py-3 text-sm font-extrabold text-[#1d4ed8] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#2563eb] hover:bg-white dark:border-blue-400/30 dark:bg-white/10 dark:text-blue-100 dark:hover:bg-white/15">
-                            {{ __('site.hero.cta_secondary') }}
+                        <a href="/services" class="inline-flex items-center justify-center rounded-lg border border-[#93c5fd] bg-white/80 px-6 py-3 text-sm font-extrabold text-[#1d4ed8] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#2563eb] hover:bg-white dark:border-blue-400/30 dark:bg-white/10 dark:text-blue-100 dark:hover:bg-white/15">
+                            Découvrir nos services
                         </a>
                     </div>
-                </div>
-
-                <div class="relative min-h-[430px] overflow-hidden lg:min-h-[560px]">
-                    <div class="ot-hero-ring ot-hero-ring-slow absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#bfdbfe] opacity-90 dark:border-blue-400/20 sm:h-[430px] sm:w-[430px] lg:h-[520px] lg:w-[520px]"></div>
-                    <div class="ot-hero-ring ot-hero-ring-reverse absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#dbeafe] opacity-90 dark:border-blue-300/10 lg:h-[390px] lg:w-[390px]"></div>
-                    <div class="ot-hero-dot ot-hero-dot-soft absolute left-[18%] top-[24%] h-3 w-3 rounded-full bg-[#dbeafe] dark:bg-blue-300/30"></div>
-                    <div class="ot-hero-dot ot-hero-dot-strong absolute right-[18%] top-[38%] h-6 w-6 rounded-full bg-[#dbeafe] dark:bg-blue-400/20"></div>
-                    <div class="ot-hero-glow-pulse absolute bottom-[18%] right-[10%] h-24 w-14 rotate-12 rounded-full bg-[#dbeafe]/70 blur-sm dark:bg-blue-400/10"></div>
-
-                    <div class="absolute left-[8%] top-[15%] z-20 hidden rounded-2xl text-center sm:block">
-                        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
-                            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3a3 3 0 0 0-3 3v1a3 3 0 0 0-2 2.8A3.2 3.2 0 0 0 6 13v1a3 3 0 0 0 3 3m6-14a3 3 0 0 1 3 3v1a3 3 0 0 1 2 2.8A3.2 3.2 0 0 1 18 13v1a3 3 0 0 1-3 3M9 3v14m6-14v14"/></svg>
-                        </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{!! __('site.hero.domains.ai') !!}</p>
-                    </div>
-
-                    <div class="absolute right-[8%] top-[19%] z-20 hidden rounded-2xl text-center sm:block">
-                        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
-                            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 19 6v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="m9.5 12 1.7 1.7L15 10"/></svg>
-                        </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{{ __('site.hero.domains.cybersecurity') }}</p>
-                    </div>
-
-                    <div class="absolute left-[2%] bottom-[28%] z-20 hidden rounded-2xl text-center sm:block">
-                        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
-                            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 9-4 3 4 3"/><path d="m16 9 4 3-4 3"/><path d="m14 5-4 14"/></svg>
-                        </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{!! __('site.hero.domains.web_dev') !!}</p>
-                    </div>
-
-                    <div class="absolute right-[2%] bottom-[32%] z-20 hidden rounded-2xl text-center sm:block">
-                        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
-                            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19h16"/><path d="M7 16v-4"/><path d="M12 16V8"/><path d="M17 16V5"/><path d="m14 8 3-3 3 3"/></svg>
-                        </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{{ __('site.hero.domains.data_science') }}</p>
-                    </div>
-
-                    <img src="{{ asset('images/hero-student.png') }}" alt="{{ __('site.hero.image_alt') }}" class="absolute bottom-0 left-1/2 z-10 h-[390px] max-w-none -translate-x-1/2 object-contain drop-shadow-2xl sm:h-[440px] lg:h-[520px]">
                 </div>
             </div>
 
-            <div class="relative z-30 -mt-2 grid gap-4 rounded-2xl border border-white/70 bg-white/85 p-5 shadow-xl shadow-slate-900/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/80 dark:shadow-black/30 md:grid-cols-4 lg:-mt-8">
+            <div class="relative z-30 mt-10 grid gap-4 rounded-2xl border border-white/70 bg-white/85 p-5 shadow-xl shadow-slate-900/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/80 dark:shadow-black/30 md:grid-cols-4">
                 @foreach([
-                    ['title' => __('site.hero.features.tests.title'), 'description' => __('site.hero.features.tests.description')],
-                    ['title' => __('site.hero.features.ai_analysis.title'), 'description' => __('site.hero.features.ai_analysis.description')],
-                    ['title' => __('site.hero.features.recommendations.title'), 'description' => __('site.hero.features.recommendations.description')],
-                    ['title' => __('site.hero.features.report.title'), 'description' => __('site.hero.features.report.description')],
+                    ['title' => 'Analyse de vos besoins', 'description' => 'Nous étudions votre activité pour définir la solution la plus adaptée.'],
+                    ['title' => 'Développement sur mesure', 'description' => 'Un code propre, sécurisé et pensé pour évoluer avec vous.'],
+                    ['title' => 'Design orienté résultats', 'description' => 'Des interfaces claires qui convertissent vos visiteurs en clients.'],
+                    ['title' => 'Livraison & accompagnement', 'description' => 'Mise en ligne, suivi et maintenance après le lancement.'],
                 ] as $item)
                     <div class="flex gap-4 rounded-xl p-2 transition hover:bg-[#eff6ff] dark:hover:bg-white/5">
                         <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#eff6ff] text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-300/20">
@@ -133,547 +188,223 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                 @endforeach
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="hidden" aria-hidden="true">
-        <div class="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-[#2563eb]/20 blur-3xl"></div>
-        <div class="pointer-events-none absolute bottom-10 left-10 h-72 w-72 rounded-full bg-blue-300/20 blur-3xl"></div>
 
-        <div class="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
-            <div>
-                <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#2563eb]/15 bg-white/70 px-4 py-2 text-xs font-extrabold uppercase tracking-[.2em] text-[#2563eb] shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-blue-200">
-                    <span class="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_20px_rgba(96,165,250,.9)]"></span>
-                    Plateforme intelligente d'orientation numérique
-                </div>
 
-                 <h1 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5">
-                  Découvrez votre potentiel<br/>
-                  <span class="bg-gradient-to-r from-[#2563eb] to-[#172554] bg-clip-text text-transparent">
-                    numérique
-                  </span><br/>
-                  avec OrientationTech.
-                </h1>
-                <p class="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 sm:text-lg">
-                    OrientationTech accompagne les élèves marocains dans la découverte de leur profil scolaire, de leur personnalité,
-                    de leur Ikigaï et des métiers du futur grâce à une analyse intelligente par IA.
-                </p>
+{{-- ==============================================================
+    SECTEURS & EXPERTISES
+    Prérequis : Tailwind CSS et la police Space Grotesk chargée dans le layout.
+================================================================ --}}
 
-                 <div class="flex flex-wrap gap-4 mb-10">
-                    <a href="{{ route('orientation.start') }}"
-                      class="inline-flex items-center gap-2 bg-gradient-to-br from-[#2563eb] to-[#172554] text-white px-7 py-3.5 rounded-xl font-bold shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition">
-                      Commencer mon orientation
-                    </a>
-                  
-                </div>
-                <div class="mt-10 grid max-w-xl grid-cols-3 gap-3">
-                    @foreach([
-                        ['200+', 'domaines numériques'],
-                        ['100%', 'rapport personnalisé'],
-                        ['3', 'tests clés'],
-                    ] as $stat)
-                        <div class="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-                            <div class="text-2xl font-black text-slate-950 dark:text-white">{{ $stat[0] }}</div>
-                            <div class="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{{ $stat[1] }}</div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
 
-            {{-- Dashboard Mockup --}}
-            <div class="relative">
-                <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-[#2563eb]/25 to-blue-300/20 blur-3xl"></div>
+<section class="relative isolate overflow-hidden border-y border-slate-200 bg-slate-50 py-20 sm:py-28 dark:border-slate-800 dark:bg-slate-950">
+    {{-- Décor de fond --}}
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div class="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-blue-400/10 blur-3xl dark:bg-blue-500/10"></div>
+        <div class="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-indigo-400/10 blur-3xl dark:bg-indigo-500/10"></div>
+    </div>
 
-                <div class="animate-float-soft relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 shadow-2xl shadow-slate-900/10 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80">
-                    <div class="flex items-center gap-2 border-b border-slate-200/80 bg-slate-50/80 px-5 py-4 dark:border-white/10 dark:bg-white/5">
-                        <span class="h-3 w-3 rounded-full bg-[#FF5F57]"></span>
-                        <span class="h-3 w-3 rounded-full bg-[#FFBD2E]"></span>
-                        <span class="h-3 w-3 rounded-full bg-[#28CA42]"></span>
-                        <span class="ml-3 flex-1 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold text-slate-400 dark:border-white/10 dark:bg-slate-950/60">
-                            OrientationTech.ma/dashboard
-                        </span>
-                    </div>
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+            <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-blue-700 dark:border-blue-900 dark:bg-blue-950/60 dark:text-blue-300">
+                <span class="h-1.5 w-1.5 rounded-full bg-blue-600"></span>
+                Expertise métier
+            </p>
+            <h2 class="font-['Space_Grotesk'] text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl dark:text-white">
+                Des solutions numériques pensées<br class="hidden sm:block">
+                pour votre <span class="text-blue-600 dark:text-blue-400">réalité terrain</span>
+            </h2>
+            <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg dark:text-slate-300">
+                Nous combinons compréhension métier, ingénierie robuste et expérience utilisateur pour transformer vos enjeux en produits digitaux performants.
+            </p>
+        </div>
 
-                    <div class="p-5 sm:p-7">
-                        <div class="mb-6 flex items-center justify-between">
-                          
-                            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600 dark:bg-blue-400/10">
-                                Live
+        @php
+            $sectors = [
+                [
+                    'title' => 'Produits & services digitaux',
+                    'description' => 'Des plateformes conçues pour accélérer l’acquisition, fluidifier les opérations et développer de nouveaux revenus.',
+                    'items' => ['SaaS & startups', 'E-commerce', 'Services B2B', 'Fintech'],
+                    'wide' => true,
+                ],
+                [
+                    'title' => 'Industrie & immobilier',
+                    'description' => 'Des outils fiables pour piloter les projets, centraliser l’information et améliorer la coordination des équipes.',
+                    'items' => ['Industrie', 'BTP', 'Immobilier', 'Logistique'],
+                    'wide' => false,
+                ],
+                [
+                    'title' => 'Santé & services essentiels',
+                    'description' => 'Des parcours digitaux clairs, sécurisés et adaptés aux exigences de vos utilisateurs.',
+                    'items' => ['Santé', 'Bien-être', 'Éducation', 'Services publics'],
+                    'wide' => false,
+                ],
+            ];
+        @endphp
+
+        <div class="mt-14 grid gap-5 lg:grid-cols-2">
+            @foreach ($sectors as $index => $sector)
+                @php $wide = $sector['wide'] ?? false; @endphp
+
+                <article class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/5 sm:p-8 {{ $wide ? 'lg:col-span-2' : '' }} dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:shadow-black/20">
+                    <div aria-hidden="true" class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-blue-100/70 transition duration-500 group-hover:scale-150 dark:bg-blue-950/60"></div>
+
+                    <div class="relative {{ $wide ? 'grid gap-7 lg:grid-cols-[1.15fr_.85fr] lg:items-end' : '' }}">
+                        <div>
+                            <span class="mb-6 flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-sm font-bold text-white shadow-lg shadow-slate-950/20 dark:bg-blue-500">
+                                0{{ $index + 1 }}
                             </span>
+                            <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+                                {{ $sector['title'] }}
+                            </h3>
+                            <p class="mt-3 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300">
+                                {{ $sector['description'] }}
+                            </p>
                         </div>
 
-                        <div class="grid grid-cols-3 gap-3">
-                            @foreach([
-                                ['3', 'Tests', 'bg-blue-50 text-blue-700'],
-                                ['IA', 'Analyse', 'bg-blue-50 text-blue-700'],
-                                ['PDF', 'Rapport', 'bg-blue-100 text-blue-800'],
-                            ] as $card)
-                                <div class="rounded-2xl {{ $card[2] }} p-4">
-                                    <div class="text-2xl font-black">{{ $card[0] }}</div>
-                                    <div class="text-xs font-bold opacity-70">{{ $card[1] }}</div>
-                                </div>
+                        <ul class="relative flex flex-wrap gap-2 {{ $wide ? 'lg:justify-end' : 'mt-7' }}" aria-label="Secteurs">
+                            @foreach ($sector['items'] as $item)
+                                <li class="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                                    {{ $item }}
+                                </li>
                             @endforeach
-                        </div>
-
-                        <div class="mt-6 rounded-2xl bg-slate-50 p-4 dark:bg-white/5">
-                            <div class="mb-4 flex items-center justify-between">
-                                <span class="text-sm font-black">Progression hebdomadaire</span>
-                                <span class="text-xs font-bold text-blue-500">+18%</span>
-                            </div>
-
-                            <div class="flex h-28 items-end gap-2">
-                                @foreach([38, 54, 72, 48, 88, 64, 96] as $bar)
-                                    <div class="flex-1 rounded-t-xl bg-gradient-to-t from-[#2563eb] to-[#93c5fd]" style="height: {{ $bar }}%"></div>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <div class="mt-5 space-y-3">
-                            @foreach([
-                                ['Amine B.', 'Data / IA', '92%', 'bg-[#2563eb]'],
-                                ['Sara M.', 'Cybersécurité', '88%', 'bg-blue-500'],
-                            ] as $row)
-                                <div class="flex items-center justify-between rounded-2xl border border-slate-100 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/50">
-                                    <div>
-                                        <div class="text-sm font-black">{{ $row[0] }}</div>
-                                        <div class="text-xs text-slate-500">{{ $row[1] }}</div>
-                                    </div>
-                                    <span class="{{ $row[3] }} rounded-full px-3 py-1 text-xs font-black text-white">{{ $row[2] }}</span>
-                                </div>
-                            @endforeach
-                        </div>
+                        </ul>
                     </div>
-                </div>
+                </article>
+            @endforeach
 
-                <div class="absolute -bottom-6 -left-4 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-xl dark:border-white/10 dark:bg-slate-900">
-                    <div class="flex items-center gap-3">
-                        <span class="text-3xl">🤖</span>
-                        <div>
-                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">IA d'orientation</p>
-                            <p class="text-sm font-black">Rapport généré automatiquement</p>
-                        </div>
+            <article class="relative overflow-hidden rounded-3xl bg-blue-700 p-7 text-white shadow-lg shadow-blue-900/20 sm:p-8">
+                <div aria-hidden="true" class="absolute -right-12 -top-12 h-44 w-44 rounded-full border-[20px] border-white/10"></div>
+                <div class="relative flex h-full flex-col justify-between gap-7">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-100">Un besoin spécifique ?</p>
+                        <h3 class="mt-3 font-['Space_Grotesk'] text-2xl font-bold tracking-tight">
+                            Votre contexte mérite une réponse sur mesure.
+                        </h3>
                     </div>
+                    <a href="/contact" class="inline-flex w-fit items-center gap-2 text-sm font-bold text-white transition hover:gap-3 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-700">
+                        Échangeons sur votre projet
+                        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                        </svg>
+                    </a>
                 </div>
-            </div>
+            </article>
         </div>
-    </section>
-
-
-  {{-- <!-- Section About flottante --> 
-            <section id="about" class="relative z-20 md:z-20 sm:z-20 lg:z-20 -mt-32 dark:bg-gray-900 ">
-              <div class="bg-white rounded-t-3xl shadow-xl w-full md:w-12/12 lg:max-w-full mx-auto px-6 md:px-12 py-16
-                          transform transition-all duration-700 hover:scale-[1.01] hover:shadow-2xl
-                          dark:bg-gray-900 ">
-                
-                <!-- Header -->
-                <div class="text-center mb-12">
-                  <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-[#2563eb] dark:text-blue-400 relative inline-block">
-                    {{ __('site.about.title') }}
-                    <span class="block w-40 h-1.5 bg-gradient-to-r from-[#2563eb] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3 rounded-full"></span>
-                  </h1>
-
-                </div>
-
-                <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                  
-                  <!-- Texte -->
-                  <div class="lg:w-6/12 lg:pl-12 animate-fadeinright">
-                    <h3 class="text-3xl font-bold text-[#2563eb] dark:text-blue-400 mb-6 leading-snug">
-                      {!! __('site.about.subtitle_html') !!}
-                    </h3>
-                    
-                    <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
-                      {!! __('site.about.p1') !!}
-                    </p>
-                    
-                    
-                    @php
-                      $aboutQuote = trim(__('site.about.quote'));
-                      // Replace normal spaces around French guillemets with non-breaking spaces
-                      $aboutQuote = str_replace(['« ', ' »'], ['«&nbsp;', '&nbsp;»'], $aboutQuote);
-                      // Collapse multiple whitespace and remove hard line breaks that break layout
-                      $aboutQuote = preg_replace('/[\r\n\t]+/', ' ', $aboutQuote);
-                      $aboutQuote = preg_replace('/\s{2,}/', ' ', $aboutQuote);
-                    @endphp
-
-                    <blockquote class="border-l-4 border-[#2563eb] pl-4 italic text-gray-600 dark:text-gray-300 text-base sm:text-lg bg-gray-50 dark:bg-gray-800 py-2 px-5 rounded-md shadow-sm ">
-                      <p class="whitespace-normal break-words leading-relaxed max-w-prose">
-                        {!! $aboutQuote !!}
-                      </p>
-                    </blockquote>
-
-                    <!-- Stats supprimées temporairement -->
-                  </div>
-
-                  <!-- Images avec superposition dynamique -->
-                  <div class="lg:w-6/12 relative group animate-fadeinleft">
-                    <div class="relative w-full max-w-lg mx-auto">
-                      <img src="/images/img1.jpg" alt="Bureau moderne" loading="lazy" decoding="async"
-                          class="w-4/5 rounded-2xl shadow-2xl transform rotate-[-3deg] translate-x-6 translate-y-4 
-                                  transition-all duration-700 group-hover:scale-105 group-hover:rotate-0">
-                      <img src="/images/img2.jpg" alt="Équipe au travail" loading="lazy" decoding="async"
-                          class="absolute top-6 right-0 w-4/5 rounded-2xl shadow-2xl transform rotate-3 
-                                  transition-all duration-700 group-hover:scale-105 group-hover:rotate-0">
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-  </section> --}}
-
-
-
-
-
-{{-- ════════════════════════ PROBLEM / SERVICES ════════════════════════ --}}
-<section id="services" class="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-[#2563eb] to-[#172554] dark:from-gray-900 dark:to-gray-800">
-
-  {{-- Abstract Animated Background --}}
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="hidden md:block absolute -top-16 -left-16 w-72 h-72 bg-white/10 rounded-full blur-2xl opacity-30"></div>
-    <div class="hidden md:block absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-20"></div>
-    <div class="absolute top-0 -left-8 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob"></div>
-    <div class="absolute right-16 -bottom-2 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-2000"></div>
-    <div class="absolute right-16 -bottom-16 w-80 h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-4000"></div>
-  </div>
-
-  <div class="w-full max-w-[95%] mx-auto px-4 md:px-8 relative z-10">
-
-    {{-- Full Width Title Section --}}
-    <div class="w-full mb-10">
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
-        {{ __('site.services.problem_title') }}
-      </h1>
-      <div class="w-40 h-1.5 bg-gradient-to-r from-blue-300 to-transparent rounded-full"></div>
     </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-2 md:gap-8 lg:gap-12 items-start">
-
-      {{-- Contenu Texte (Gauche) --}}
-      <div class="order-1 lg:order-1 animate-fade-in-left">
-        <div class="lg:mb-0">
-
-          <div class="text-base md:text-lg text-blue-50/90 mb-6">
-            {{ __('site.services.problem_intro') }}
-          </div>
-
-          {{-- 4 Cards Problèmes --}}
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-6">
-
-            {{-- Card 1 : Orientation floue --}}
-            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
-              <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.profile.title') }}</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.profile.description') }}</p>
-                </div>
-              </div>
-            </div>
-
-            {{-- Card 2 : Manque de guidance --}}
-            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
-              <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.careers.title') }}</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.careers.description') }}</p>
-                </div>
-              </div>
-            </div>
-
-            {{-- Card 3 : Suivi impossible --}}
-            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
-              <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.decision.title') }}</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.decision.description') }}</p>
-                </div>
-              </div>
-            </div>
-
-            {{-- Card 4 : Outils dépassés --}}
-            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
-              <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-             <circle cx="12" cy="12" r="3.5"/><path d="M12 2.75v3"/><path d="M12 18.25v3"/><path d="M2.75 12h3"/><path d="M18.25 12h3"/>
-
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.paths.title') }}</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.paths.description') }}</p>
-                </div>
-              </div>
-            </div>
-
-          </div>{{-- fin Benefits Grid --}}
-
-          {{-- CTA Button (Desktop) --}}
-          <div class="hidden lg:block">
-            <a href="/noservices" class="group inline-flex items-center gap-3 bg-[#2563eb] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl hover:bg-[#1d4ed8] hover:scale-105 transition-all duration-300 transform hover:-translate-y-1">
-              {{ __('site.services.cta_discover') }}
-              <span class="w-8 h-8 rounded-full bg-white text-[#2563eb] flex items-center justify-center group-hover:bg-[#172554] transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </span>
-            </a>
-          </div>
-
-        </div>
-      </div>
-
-      {{-- Video Container (Droite sur Desktop) --}}
-      <div class="order-2 lg:order-2 flex justify-center lg:justify-start lg:pl-12 items-start relative perspective-1000">
-        <div class="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full animate-pulse-slow pointer-events-none"></div>
-        <div class="relative w-full max-w-[240px] sm:max-w-[270px] md:max-w-[300px] lg:max-w-[340px] aspect-[9/16] rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-white/10 backdrop-blur-sm transform transition-all duration-500 hover:scale-[1.02] bg-black/20">
-          <video id="servicesVideo"
-                 class="absolute inset-0 w-full h-full object-cover z-0"
-                 src="{{ $presentationVideoSrc }}"
-                 preload="metadata"
-                  loop playsinline>
-          </video>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10 opacity-80"></div>
-          {{-- Custom Video Controls --}}
-          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-lg z-20">
-            <button id="videoPlayPause" type="button" aria-label="{{ __('site.aria.play_pause') }}"
-                    class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
-              <svg id="iconPlay" class="w-5 h-5 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
-              <svg id="iconPause" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-            </button>
-            <button id="videoMute" type="button" aria-label="{{ __('site.aria.mute_unmute') }}"
-                    class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
-              <svg id="iconVolume" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M5 9v6h4l5 4V5L9 9H5z"/>
-                <path d="M16.5 8.5a5 5 0 010 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <svg id="iconMuted" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M5 9v6h4l5 4V5L9 9H5z"/>
-                <path d="M19 9l-6 6M13 9l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-            <div class="flex items-center justify-center flex-1 min-w-0 px-2">
-              <input id="videoVolume" type="range" min="0" max="100" step="5" value="50"
-                     class="w-full h-1.5 accent-white bg-white/30 rounded-full appearance-none cursor-pointer"
-                     aria-label="{{ __('site.aria.volume') }}" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {{-- CTA Button (Mobile) --}}
-      <div class="order-3 lg:hidden flex justify-center mt-8 w-full">
-        <a href="/noservices" class="group inline-flex items-center gap-3 bg-[#2563eb] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl hover:bg-[#1d4ed8] hover:scale-105 transition-all duration-300 transform hover:-translate-y-1">
-          {{ __('site.services.cta_discover') }}
-          <span class="w-8 h-8 rounded-full bg-white text-[#2563eb] flex items-center justify-center group-hover:bg-[#172554] transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </span>
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-  {{-- Script de contrôle vidéo (inchangé) --}}
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const video = document.getElementById('servicesVideo');
-        const playBtn = document.getElementById('videoPlayPause');
-        const muteBtn = document.getElementById('videoMute');
-        const vol = document.getElementById('videoVolume');
-        const iconPlay = document.getElementById('iconPlay');
-        const iconPause = document.getElementById('iconPause');
-        const iconVolume = document.getElementById('iconVolume');
-        const iconMuted = document.getElementById('iconMuted');
-        if (!video) return;
-
-        const updPlay = (playing) => {
-          iconPlay?.classList.toggle('hidden', playing);
-          iconPause?.classList.toggle('hidden', !playing);
-        };
-        const updMute = (muted) => {
-          iconVolume?.classList.toggle('hidden', muted);
-          iconMuted?.classList.toggle('hidden', !muted);
-        };
-
-        // ✅ Initialisation sans autoplay
-        const initialVol = vol ? parseInt(vol.value, 10) / 100 : 0.5;
-        video.volume = Number.isFinite(initialVol) ? initialVol : 0.5;
-        video.muted = false;
-        updPlay(false);   // affiche l'icône ▶ Play
-        updMute(false);   // affiche l'icône volume
-
-        // ❌ SUPPRIMÉ : video.play() + playPromise
-
-        playBtn?.addEventListener('click', () => {
-          if (video.paused) { video.play().then(() => updPlay(true)).catch(() => updPlay(false)); }
-          else { video.pause(); updPlay(false); }
-        });
-        muteBtn?.addEventListener('click', () => {
-          video.muted = !video.muted;
-          updMute(video.muted);
-          if (!video.muted && video.volume === 0) { video.volume = 0.5; if(vol) vol.value = 50; }
-        });
-        vol?.addEventListener('input', (e) => {
-          const v = Math.max(0, Math.min(100, parseInt(e.target.value, 10) || 0)) / 100;
-          video.volume = v; video.muted = (v === 0); updMute(video.muted);
-        });
-      });
-    </script>
-
 </section>
-{{-- ════════════════════════ SOLUTION ════════════════════════ --}}
 
-<section id="solution" class="bg-slate-50 px-4 py-20 dark:bg-slate-950 sm:px-6 lg:py-28">
-    <div class="mx-auto max-w-7xl">
-        <div class="grid items-center gap-14 lg:grid-cols-2">
-            <div>
-                <span class="inline-flex rounded-full bg-[#2563eb]/10 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-[#2563eb]">
-                    {{ __('site.solution.badge') }}
-                </span>
-                <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
-                    {{ __('site.solution.title') }}
+<section class="bg-white py-20 sm:py-28 dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+            <div class="max-w-2xl">
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">Nos expertises</p>
+                <h2 class="mt-4 font-['Space_Grotesk'] text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl dark:text-white">
+                    De l’idée au produit, une équipe <span class="text-blue-600 dark:text-blue-400">qui délivre.</span>
                 </h2>
-                <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-                    {{ __('site.solution.description') }}
-                </p>
-
-                <div class="mt-8 space-y-4">
-                    @foreach([
-                        ['title' => __('site.solution.features.profile.title'), 'description' => __('site.solution.features.profile.description')],
-                        ['title' => __('site.solution.features.personality.title'), 'description' => __('site.solution.features.personality.description')],
-                        ['title' => __('site.solution.features.report.title'), 'description' => __('site.solution.features.report.description')],
-                    ] as $feature)
-                        <div class="group flex gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-white/5">
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#eff6ff] text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-blue-500/10 dark:ring-blue-400/20">
-                                @switch($loop->index)
-                                    @case(0)
-                                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4.75 20.25a7.25 7.25 0 0 1 14.5 0"/><path d="M17.5 5.5 19 7l2.25-2.5"/></svg>
-                                        @break
-                                    @case(1)
-                                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.75"/><path d="M12 2.75v3"/><path d="M12 18.25v3"/><path d="M2.75 12h3"/><path d="M18.25 12h3"/><path d="m5.45 5.45 2.1 2.1"/><path d="m16.45 16.45 2.1 2.1"/><path d="m18.55 5.45-2.1 2.1"/><path d="m7.55 16.45-2.1 2.1"/></svg>
-                                        @break
-                                    @default
-                                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.75h7.5L19.25 8.5V20A1.25 1.25 0 0 1 18 21.25H7A2.25 2.25 0 0 1 4.75 19V6A2.25 2.25 0 0 1 7 3.75Z"/><path d="M14.5 3.75V8.5h4.75"/><path d="M8 14h3"/><path d="M13 17h3"/><path d="M8 17h2"/></svg>
-                                @endswitch
-                            </div>
-                            <div>
-                                <h3 class="font-black text-slate-950 dark:text-white">{{ $feature['title'] }}</h3>
-                                <p class="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400">{{ $feature['description'] }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
             </div>
+            <p class="max-w-md text-base leading-7 text-slate-600 dark:text-slate-300">
+                Un accompagnement complet, structuré autour de résultats concrets : adoption, performance et évolutivité.
+            </p>
+        </div>
 
-            <div class="orientation-path-panel rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-slate-900">
-                <style>
-                    #solution .orientation-path-panel > .mb-6 > h3:not(.orientation-path-title) { display: none; }
-                </style>
-                <div class="mb-6 flex items-center justify-between">
-                    <h3 class="orientation-path-title flex items-center gap-2 text-xl font-black text-slate-950 dark:text-white">
-                        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#eff6ff] text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-blue-500/10 dark:ring-blue-400/20">
-                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.75 6.75 9 4.75l6 2 4.25-2v12.5L15 19.25l-6-2-4.25 2V6.75Z"/><path d="M9 4.75v12.5"/><path d="M15 6.75v12.5"/></svg>
+        @php
+            $services = [
+                [
+                    'number' => '01',
+                    'title' => 'Plateformes web & e-commerce',
+                    'text' => 'Des expériences rapides, accessibles et orientées conversion, de la vitrine à la boutique en ligne complexe.',
+                    'tags' => ['Sites sur mesure', 'E-commerce', 'SEO technique'],
+                    'url' => '/services/web',
+                    'featured' => true,
+                ],
+                [
+                    'number' => '02',
+                    'title' => 'Applications métier & SaaS',
+                    'text' => 'Des outils qui simplifient le travail de vos équipes et font évoluer votre modèle de service.',
+                    'tags' => ['Portails clients', 'API', 'Paiement'],
+                    'url' => '/services/applications',
+                    'featured' => false,
+                ],
+                [
+                    'number' => '03',
+                    'title' => 'IA appliquée & automatisation',
+                    'text' => 'Des assistants et workflows utiles, intégrés à vos processus pour faire gagner du temps à vos équipes.',
+                    'tags' => ['IA générative', 'RAG', 'Workflows'],
+                    'url' => '/services/ia',
+                    'featured' => false,
+                ],
+                [
+                    'number' => '04',
+                    'title' => 'Croissance & optimisation',
+                    'text' => 'Des décisions guidées par la donnée pour renforcer votre visibilité, votre acquisition et votre rétention.',
+                    'tags' => ['Analytics', 'SEO', 'CRO'],
+                    'url' => '/services/marketing',
+                    'featured' => false,
+                ],
+            ];
+        @endphp
+
+        <div class="mt-14 grid gap-5 md:grid-cols-2">
+            @foreach ($services as $service)
+                @php $featured = $service['featured'] ?? false; @endphp
+
+                <a href="{{ $service['url'] }}"
+                   class="group relative flex min-h-[290px] flex-col justify-between overflow-hidden rounded-3xl border p-7 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 sm:p-8
+                          {{ $featured
+                              ? 'border-slate-950 bg-slate-950 text-white shadow-xl shadow-slate-950/15 dark:border-blue-500 dark:bg-blue-600'
+                              : 'border-slate-200 bg-slate-50 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-xl hover:shadow-blue-950/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:bg-slate-900' }}">
+                    @if ($featured)
+                        <div aria-hidden="true" class="absolute -right-12 -top-10 h-56 w-56 rounded-full bg-blue-500/25 blur-2xl"></div>
+                    @endif
+
+                    <div class="relative flex items-start justify-between gap-4">
+                        <span class="font-['Space_Grotesk'] text-sm font-bold {{ $featured ? 'text-blue-300' : 'text-blue-600 dark:text-blue-400' }}">
+                            {{ $service['number'] }}
                         </span>
-                        {{ __('site.solution.path.title') }}
-                    </h3>
-                    <h3 class="text-xl font-black">{{ __('site.solution.path.title') }}</h3>
-                    <span class="rounded-full bg-[#2563eb]/10 px-3 py-1 text-xs font-bold text-[#2563eb]">{{ __('site.solution.path.example') }}</span>
-                </div>
+                        <span class="flex h-10 w-10 items-center justify-center rounded-full border transition group-hover:rotate-45
+                                     {{ $featured
+                                         ? 'border-white/20 bg-white/10'
+                                         : 'border-slate-200 bg-white text-slate-950 dark:border-slate-700 dark:bg-slate-800 dark:text-white' }}">
+                            <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </div>
 
-                @foreach([
-                    ['number' => '1', 'title' => __('site.solution.steps.profile.title'), 'description' => __('site.solution.steps.profile.description')],
-                    ['number' => '2', 'title' => __('site.solution.steps.results.title'), 'description' => __('site.solution.steps.results.description')],
-                    ['number' => '3', 'title' => __('site.solution.steps.report.title'), 'description' => __('site.solution.steps.report.description')],
-                ] as $step)
-                    <div class="relative flex gap-4 pb-7 last:pb-0">
-                        @if(!$loop->last)
-                            <span class="absolute left-5 top-10 h-full w-px bg-slate-200 dark:bg-white/10"></span>
-                        @endif
-                        <div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#2563eb] to-[#172554] text-sm font-black text-white">
-                            {{ $step['number'] }}
-                        </div>
-                        <div>
-                            <h4 class="font-black">{{ $step['title'] }}</h4>
-                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{{ $step['description'] }}</p>
+                    <div class="relative mt-10">
+                        <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight">
+                            {{ $service['title'] }}
+                        </h3>
+                        <p class="mt-3 max-w-md text-sm leading-7 {{ $featured ? 'text-slate-300' : 'text-slate-600 dark:text-slate-300' }}">
+                            {{ $service['text'] }}
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            @foreach ($service['tags'] as $tag)
+                                <span class="rounded-full px-3 py-1.5 text-xs font-semibold
+                                             {{ $featured
+                                                 ? 'bg-white/10 text-white ring-1 ring-inset ring-white/15'
+                                                 : 'bg-white text-slate-700 ring-1 ring-inset ring-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700' }}">
+                                    {{ $tag }}
+                                </span>
+                            @endforeach
                         </div>
                     </div>
-                @endforeach
+                </a>
+            @endforeach
+        </div>
 
-                <div class="mt-7 flex flex-wrap gap-2">
-                    @foreach([
-                        __('site.solution.tags.dev_web'),
-                        __('site.solution.tags.cybersecurity'),
-                        __('site.solution.tags.data_science'),
-                        __('site.solution.tags.ai'),
-                        __('site.solution.tags.cloud'),
-                        __('site.solution.tags.ux_ui'),
-                    ] as $tag)
-                        <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-200">
-                            {{ $tag }}
-                        </span>
-                    @endforeach
-                </div>
-            </div>
+        <div class="mt-12 text-center">
+            <a href="/portfolio"
+               class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
+                Découvrir nos réalisations
+            </a>
         </div>
     </div>
 </section>
 
-
-
-{{-- ════════════════════════ HOW IT WORKS ════════════════════════ --}}
-<section id="how" class="py-20 px-6 bg-gradient-to-br from-[#2563eb] to-[#172554] dark:from-gray-900 dark:to-gray-800 ">
-  <div class="max-w-5xl mx-auto text-center mb-12">
-    <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-      {{ __('site.how.badge') }}
-    </div>
-    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-3">{{ __('site.how.title') }}</h2>
-    <p class="text-blue-200">{{ __('site.how.subtitle') }}</p>
-  </div>
-  <div class="max-w-5xl mx-auto grid md:grid-cols-4 gap-6">
-    @foreach([
-      ['icon' => '1', 'number' => '1', 'title' => __('site.how.steps.profile.title'), 'description' => __('site.how.steps.profile.description')],
-      ['icon' => '2', 'number' => '2', 'title' => __('site.how.steps.diagnostic.title'), 'description' => __('site.how.steps.diagnostic.description')],
-      ['icon' => '3', 'number' => '3', 'title' => __('site.how.steps.personality.title'), 'description' => __('site.how.steps.personality.description')],
-      ['icon' => '4', 'number' => '4', 'title' => __('site.how.steps.report.title'), 'description' => __('site.how.steps.report.description')],
-    ] as $step)
-    <div class="text-center">
-      <div class="relative inline-block mb-4">
-        <div class="w-16 h-16 bg-white/10 border border-[#93c5fd]/40 rounded-full flex items-center justify-center text-white mx-auto shadow-sm">
-          @switch($loop->index)
-            @case(0)
-              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4.75 20.25a7.25 7.25 0 0 1 14.5 0"/></svg>
-              @break
-            @case(1)
-              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.75v3"/><path d="M12 18.25v3"/><path d="M2.75 12h3"/><path d="M18.25 12h3"/></svg>
-              @break
-            @case(2)
-              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 0 0-3 3v1a3 3 0 0 0-2 2.8A3.2 3.2 0 0 0 6 13v1a3 3 0 0 0 3 3m6-14a3 3 0 0 1 3 3v1a3 3 0 0 1 2 2.8A3.2 3.2 0 0 1 18 13v1a3 3 0 0 1-3 3M9 3v14m6-14v14"/></svg>
-              @break
-            @default
-              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.75h7.5L19.25 8.5V20A1.25 1.25 0 0 1 18 21.25H7A2.25 2.25 0 0 1 4.75 19V6A2.25 2.25 0 0 1 7 3.75Z"/><path d="M14.5 3.75V8.5h4.75"/><path d="M8 14h8"/><path d="M8 17h5"/></svg>
-          @endswitch
-        </div>
-        <span class="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#2563eb] rounded-full text-xs font-extrabold flex items-center justify-center">{{ $step['number'] }}</span>
-      </div>
-      <h4 class="font-bold text-white mb-1.5">{{ $step['title'] }}</h4>
-      <p class="text-blue-200 text-sm">{{ $step['description'] }}</p>
-    </div>
-    @endforeach
-  </div>
-</section>
 
 {{-- ════════════════════════ BENEFITS / POURQUOI ════════════════════════ --}}
 <section id="pourquoi" class="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 overflow-hidden isolate">
@@ -767,116 +498,6 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-            <!-- Resources Section -->
-            <section id="ressources" class="bg-white py-12 sm:py-16 md:py-20 text-gray-900 dark:bg-gray-900 dark:text-white">
-              <div class="mx-auto max-w-7xl px-4 sm:px-6">
-                <div class="mb-10 flex flex-col gap-4 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
-                  <div>
-                    <p class="mb-2 text-sm font-bold uppercase tracking-wide text-[#2563eb]">{{ __('site.resources.badge') }}</p>
-                    <h2 class="text-3xl font-extrabold sm:text-4xl md:text-5xl">
-                      {{ __('site.resources.title') }}
-                    </h2>
-                    <p class="mt-3 max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-lg">
-                      {{ __('site.resources.subtitle') }}
-                    </p>
-                  </div>
-                </div>
-
-                @php
-                  $resourceContents = $resourceContents ?? collect();
-                @endphp
-
-                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  @forelse($resourceContents as $resource)
-                    @php
-                      $resourceLiked = $resource->isLikedBy(auth()->user());
-                      $resourceFavorited = $resource->isFavoritedBy(auth()->user());
-                    @endphp
-                    <article class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-gray-800">
-                      <div class="absolute right-4 top-4 z-20 flex items-center gap-2">
-                        @auth
-                          <form method="POST" action="{{ route('pages.resources.like', $resource) }}">
-                            @csrf
-                            <button type="submit" aria-label="{{ $resourceLiked ? __('site.resources.actions.unlike') : __('site.resources.actions.like') }}" title="{{ $resourceLiked ? __('site.resources.actions.unlike') : __('site.resources.actions.like') }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $resourceLiked ? 'border-red-500 bg-red-50 text-red-600 dark:bg-red-500/15 dark:text-red-300' : 'border-white/70 bg-white/90 text-gray-700 hover:border-red-300 hover:text-red-500 dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300' }}">
-                              <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="{{ $resourceLiked ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                              </svg>
-                            </button>
-                          </form>
-                          <form method="POST" action="{{ route('pages.resources.favorite', $resource) }}">
-                            @csrf
-                            <button type="submit" aria-label="{{ $resourceFavorited ? __('site.resources.actions.unfavorite') : __('site.resources.actions.favorite') }}" title="{{ $resourceFavorited ? __('site.resources.actions.unfavorite') : __('site.resources.actions.favorite') }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $resourceFavorited ? 'border-[#2563eb] bg-[#eff6ff] text-[#2563eb] dark:bg-blue-500/15 dark:text-blue-200' : 'border-white/70 bg-white/90 text-gray-700 hover:border-[#93c5fd] hover:text-[#2563eb] dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200' }}">
-                              <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="{{ $resourceFavorited ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-                              </svg>
-                            </button>
-                          </form>
-                        @else
-                          <a href="{{ route('login') }}" aria-label="{{ __('site.actions.login_to_like') }}" title="{{ __('site.actions.login_to_like') }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-red-300 hover:text-red-500 hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300">
-                            <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-                          </a>
-                          <a href="{{ route('login') }}" aria-label="{{ __('site.actions.login_to_save') }}" title="{{ __('site.actions.login_to_save') }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#93c5fd] hover:text-[#2563eb] hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200">
-                            <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
-                          </a>
-                        @endauth
-                      </div>
-                      <a href="{{ route('pages.resources.show', $resource) }}" class="flex h-full flex-col focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2">
-                        <div class="relative h-44 overflow-hidden bg-[#eff6ff] dark:bg-slate-950">
-                          <img src="{{ $resource->cover_url }}" alt="{{ $resource->title }}" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
-                          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                          <span class="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#2563eb] shadow-sm dark:bg-slate-950/85 dark:text-blue-200">
-                            {{ $resource->type_label }}
-                          </span>
-                        </div>
-
-                        <div class="flex flex-1 flex-col p-5 {{ $resource->file_url ? 'pb-16' : '' }}">
-                          <div class="mb-3 flex flex-wrap gap-2">
-                            @if($resource->domain_key)
-                              <span class="rounded-full bg-[#eff6ff] px-3 py-1 text-xs font-semibold text-[#1d4ed8] dark:bg-blue-500/10 dark:text-blue-200">{{ $resource->domain_key }}</span>
-                            @endif
-                            @if($resource->career_name)
-                              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600 dark:bg-white/10 dark:text-gray-300">{{ $resource->career_name }}</span>
-                            @endif
-                          </div>
-
-                          <h3 class="line-clamp-2 text-xl font-bold text-gray-950 transition group-hover:text-[#2563eb] dark:text-white">
-                            {{ $resource->title }}
-                          </h3>
-
-                          <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
-                            {{ $resource->summary ?: __('site.resources.summary_fallback') }}
-                          </p>
-
-                          <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#2563eb]">
-                            {{ __('site.resources.open') }}
-                            <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                          </span>
-                        </div>
-                      </a>
-                      @if($resource->file_url)
-                        <a href="{{ $resource->file_url }}" download class="absolute bottom-5 right-5 z-20 inline-flex items-center rounded-full bg-[#2563eb] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#1d4ed8]">
-                          {{ __('site.resources.download') }}
-                        </a>
-                      @endif
-                    </article>
-                  @empty
-                    <div class="col-span-full rounded-2xl border border-dashed border-[#93c5fd] bg-[#eff6ff] p-8 text-center text-[#1e40af] dark:border-blue-400/30 dark:bg-blue-500/10 dark:text-blue-200">
-                      {{ __('site.resources.empty') }}
-                    </div>
-                  @endforelse
-                </div>
-              </div>
-            </section>
 
             <!-- Blog Section -->
             <section id="blog" class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#2563eb] to-[#172554] text-white overflow-hidden relative dark:from-gray-900 dark:to-gray-800">
@@ -1096,7 +717,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                                   </span>
                                   <div>
                                       <h4 class="text-base sm:text-lg font-semibold dark:text-white">{{ __('site.contact.email') }}</h4>
-                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
+                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->email ?? 'contact@ABOULCODE.ma' }}</p>
                                   </div>
                               </div>
                           </div>

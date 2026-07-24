@@ -2,13 +2,15 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DomainExplorerController;
 use App\Http\Controllers\GlobalSearchController;
 use App\Http\Controllers\PostInteractionController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ResourceContentController;
 use App\Http\Controllers\OrientationStartController;
 use App\Http\Controllers\StudentProfileController;
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
@@ -27,6 +29,11 @@ use App\Models\Post;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// ABOULCODE Pages
+Route::get('/projets', [ProjectsController::class, 'index'])->name('projects.index');
+Route::get('/services', [ServicesController::class, 'index'])->name('services.index');
+Route::get('/a-propos', [AboutController::class, 'index'])->name('about.index');
+
 Route::get('/recherche', GlobalSearchController::class)->name('search');
 
 Route::get('/commencer-orientation', OrientationStartController::class)->name('orientation.start');
@@ -37,8 +44,8 @@ Route::get('/commencer-orientation', OrientationStartController::class)->name('o
 // Pages légales
 Route::view('/mentions-legales', 'pages.legal')->name('legal');
 Route::view('/politique-de-confidentialite', 'pages.privacy')->name('privacy');
-// Page Pourquoi OrientationTech
-Route::view('/pourquoi-OrientationTech', 'pages.pourquoi')->name('pourquoi');
+// Page Pourquoi ABOULCODE
+Route::view('/pourquoi-ABOULCODE', 'pages.pourquoi')->name('pourquoi');
 
 // Page Nos Services
 Route::view('/noservices', 'pages.noservices')->name('noservices');
@@ -59,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
 // Changer la langue (FR/EN) et revenir sur la page précédente — public
 Route::get('/locale/{locale}', function (string $locale) {
-    if (! array_key_exists($locale, config('orientationtech.supported_locales', []))) {
+    if (! array_key_exists($locale, config('ABOULCODE.supported_locales', []))) {
         $locale = config('app.fallback_locale');
     }
     session(['locale' => $locale]);
@@ -85,26 +92,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/blog/comments/{comment}/report', [PostInteractionController::class, 'reportComment'])->name('pages.blog.comments.report');
 });
 
-Route::get('/ressources/{resourceContent:slug}', [ResourceContentController::class, 'show'])->name('pages.resources.show');
 
-Route::middleware('auth')->group(function () {
-    Route::post('/ressources/{resourceContent:slug}/like', [ResourceContentController::class, 'like'])->name('pages.resources.like');
-    Route::post('/ressources/{resourceContent:slug}/favorite', [ResourceContentController::class, 'favorite'])->name('pages.resources.favorite');
-});
 
-Route::get('/domaines-numeriques', [DomainExplorerController::class, 'index'])->name('domains.index');
-Route::get('/domaines-numeriques/comparer', [DomainExplorerController::class, 'compare'])->name('domains.compare');
-Route::get('/domaines-numeriques/{domain:slug}', [DomainExplorerController::class, 'show'])->name('domains.show');
 
-Route::middleware('auth')->group(function () {
-    Route::post('/domaines-numeriques/{domain:slug}/like', [DomainExplorerController::class, 'like'])->name('domains.like');
-    Route::post('/domaines-numeriques/{domain:slug}/favorite', [DomainExplorerController::class, 'favorite'])->name('domains.favorite');
-    Route::post('/domaines-numeriques/{domain:slug}/rate', [DomainExplorerController::class, 'rate'])->name('domains.rate');
-    Route::post('/domaines-numeriques/{domain:slug}/comments', [DomainExplorerController::class, 'storeComment'])->name('domains.comments.store');
-    Route::patch('/domaines-comments/{comment}', [DomainExplorerController::class, 'updateComment'])->name('domains.comments.update');
-    Route::delete('/domaines-comments/{comment}', [DomainExplorerController::class, 'deleteComment'])->name('domains.comments.delete');
-    Route::post('/domaines-comments/{comment}/report', [DomainExplorerController::class, 'reportComment'])->name('domains.comments.report');
-});
+
 
 require __DIR__.'/auth.php';
 

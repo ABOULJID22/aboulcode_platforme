@@ -23,7 +23,7 @@ return [
     ],
 
     'hero' => [
-        'title' => 'Découvrez votre potentiel avec <span class="text-[#2563eb]">OrientationTech</span>.',
+        'title' => 'Découvrez votre potentiel avec <span class="text-[#2563eb]">ABOULCODE</span>.',
         'cta_appointment' => 'Commencer mon orientation',
         'cta_contact' => 'Nous contacter',
         'video_not_supported' => 'Votre navigateur ne prend pas en charge la vidéo.',
@@ -32,16 +32,16 @@ return [
     'about' => [
         'title' => 'Qui sommes-nous ?',
         'subtitle_html' => 'Une plateforme intelligente pour orienter les élèves marocains vers les métiers du numérique',
-        'p1' => "OrientationTech accompagne les élèves dans la découverte de leur potentiel, de leur Ikigaï, de leur personnalité et des domaines numériques les plus adaptés à leur profil. La plateforme combine intelligence artificielle, psychologie de l'orientation et sciences de l'éducation pour proposer une orientation claire, progressive et personnalisée.",
+        'p1' => "ABOULCODE accompagne les élèves dans la découverte de leur potentiel, de leur Ikigaï, de leur personnalité et des domaines numériques les plus adaptés à leur profil. La plateforme combine intelligence artificielle, psychologie de l'orientation et sciences de l'éducation pour proposer une orientation claire, progressive et personnalisée.",
         'quote' => "Notre objectif est d'aider chaque élève à mieux se connaître, à comprendre ses forces et à construire un parcours cohérent vers les études supérieures et les métiers du futur.",
         'stats_clients' => 'Profils analysés',
         'stats_services' => 'Domaines numériques',
     ],
 
     'services' => [
-        'title' => 'OrientationTech : une orientation scolaire augmentée par l’IA',
+        'title' => 'ABOULCODE : une orientation scolaire augmentée par l’IA',
         'subtitle' => "Nous aidons l'élève à relier ses réponses, ses compétences et ses ambitions aux domaines numériques porteurs.",
-        'desc' => "OrientationTech analyse le profil scolaire, le diagnostic initial, l'Ikigaï, la personnalité, les centres d'intérêt et les motivations pour générer des recommandations personnalisées et compréhensibles.",
+        'desc' => "ABOULCODE analyse le profil scolaire, le diagnostic initial, l'Ikigaï, la personnalité, les centres d'intérêt et les motivations pour générer des recommandations personnalisées et compréhensibles.",
         'label_presentation' => 'Présentation',
         'adv1_title' => 'Diagnostic initial',
         'adv1_desc' => 'Comprendre le niveau, les matières préférées, les intérêts et les objectifs.',
@@ -55,7 +55,7 @@ return [
     ],
 
     'why' => [
-        'title' => 'Pourquoi choisir <span class="text-[#2563eb] dark:text-blue-400 block sm:inline-block mt-2 sm:mt-0">OrientationTech ?</span>',
+        'title' => 'Pourquoi choisir <span class="text-[#2563eb] dark:text-blue-400 block sm:inline-block mt-2 sm:mt-0">ABOULCODE ?</span>',
         'subtitle' => "Une démarche adaptée au contexte marocain, centrée sur l'élève et soutenue par l'intelligence artificielle.",
         'c1_title' => 'Profil complet',
         'c1_desc' => 'L’analyse ne se limite pas aux notes : elle prend en compte intérêts, motivations, valeurs et personnalité.',
@@ -69,9 +69,9 @@ return [
 
     'faq' => [
         'title' => 'Questions fréquentes',
-        'subtitle' => "Comprendre comment OrientationTech accompagne l'orientation vers les métiers du numérique.",
-        'q1' => "OrientationTech remplace-t-il le conseiller d'orientation ?",
-        'a1' => "Non. OrientationTech est un outil d'aide à la décision. Il apporte une analyse claire et personnalisée pour enrichir l'accompagnement de l'élève, des parents et des enseignants.",
+        'subtitle' => "Comprendre comment ABOULCODE accompagne l'orientation vers les métiers du numérique.",
+        'q1' => "ABOULCODE remplace-t-il le conseiller d'orientation ?",
+        'a1' => "Non. ABOULCODE est un outil d'aide à la décision. Il apporte une analyse claire et personnalisée pour enrichir l'accompagnement de l'élève, des parents et des enseignants.",
         'q2' => "Quels résultats sont analysés ?",
         'a2' => "La plateforme fusionne le profil scolaire, le diagnostic initial, l'Ikigaï, le test de personnalité, les compétences, les intérêts et les ambitions professionnelles.",
         'q3' => "Les recommandations concernent-elles seulement le développement web ?",
@@ -116,7 +116,7 @@ return [
         'title' => 'Contactez-nous',
         'subtitle' => "Une question sur l'orientation, les tests ou l'utilisation de la plateforme ?",
         'heading' => 'CONTACTEZ-NOUS',
-        'desc' => "Notre équipe peut vous aider à comprendre le fonctionnement d'OrientationTech, l'analyse des résultats, les rapports d'orientation et l'accompagnement des élèves vers les métiers du numérique.",
+        'desc' => "Notre équipe peut vous aider à comprendre le fonctionnement d'ABOULCODE, l'analyse des résultats, les rapports d'orientation et l'accompagnement des élèves vers les métiers du numérique.",
         'address' => 'Adresse',
         'phone' => 'Téléphone',
         'email' => 'E-mail',
@@ -162,9 +162,9 @@ return [
         'email' => 'E-mail',
         'phone' => 'Téléphone',
         'address' => 'Adresse',
-        'desc' => "OrientationTech accompagne les élèves marocains vers les métiers du numérique grâce à l'intelligence artificielle.",
+        'desc' => "ABOULCODE accompagne les élèves marocains vers les métiers du numérique grâce à l'intelligence artificielle.",
         'copyright' => 'Tous droits réservés.',
-        'made_with' => "Fait avec cœur par l'équipe OrientationTech",
+        'made_with' => "Fait avec cœur par l'équipe ABOULCODE",
         'open_source' => 'Orientation intelligente',
         'community' => 'Éducation et IA',
         'trust_badge' => 'Conseiller d’orientation intelligent',
@@ -185,4 +185,10 @@ return [
         'volume' => 'Volume',
         'breadcrumb' => "Fil d'Ariane",
     ],
+
+
+
+
+
+    
 ];

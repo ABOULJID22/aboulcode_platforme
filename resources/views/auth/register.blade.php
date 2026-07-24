@@ -13,13 +13,13 @@
 
                 <div class="relative z-10 flex min-h-full flex-col">
                     <div class="max-w-xl">
-                        <p class="mb-4 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-blue-100 backdrop-blur">OrientationTech</p>
+                        <p class="mb-4 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-blue-100 backdrop-blur">ABOULCODE</p>
                         <h1 class="font-libre-baskerville text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
                             Your future.<br>
                             <span class="text-blue-300">Our mission.</span>
                         </h1>
                         <p class="mt-5 max-w-lg text-base leading-8 text-blue-50/90 sm:text-lg">
-                            OrientationTech guides students and educators toward informed choices and brighter futures.
+                            ABOULCODE guides students and educators toward informed choices and brighter futures.
                         </p>
                     </div>
 
@@ -54,7 +54,7 @@
 
                         <div class="relative w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/15 bg-white/8 p-4 shadow-[0_30px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm">
                             <div class="absolute inset-x-8 bottom-6 h-20 rounded-[100%] bg-blue-500/40 blur-3xl"></div>
-                            <img src="{{ asset('images/hero-student.png') }}" alt="Student using OrientationTech on a laptop" class="relative z-10 mx-auto max-h-[410px] w-full object-contain drop-shadow-2xl">
+                            <img src="{{ asset('images/hero-student.png') }}" alt="Student using ABOULCODE on a laptop" class="relative z-10 mx-auto max-h-[410px] w-full object-contain drop-shadow-2xl">
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                             <svg class="h-9 w-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
                         </span>
                         <h1 class="font-libre-baskerville text-2xl font-bold text-slate-950 sm:text-3xl dark:text-white">
-                            Create your <span class="text-[#2563eb]">OrientationTech</span> account
+                            Create your <span class="text-[#2563eb]">ABOULCODE</span> account
                         </h1>
                         <p class="mt-2 text-sm text-slate-500 sm:text-base dark:text-slate-300">Join our community and start building your future today.</p>
                     </div>

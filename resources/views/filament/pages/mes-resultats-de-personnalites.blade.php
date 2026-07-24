@@ -410,7 +410,7 @@
     @push('scripts')
         <script>
             (function () {
-                const charts = window.orientationTechCharts || (window.orientationTechCharts = {});
+                const charts = window.ABOULCODECharts || (window.ABOULCODECharts = {});
 
                 function buildChart(canvasId, config) {
                     const canvas = document.getElementById(canvasId);

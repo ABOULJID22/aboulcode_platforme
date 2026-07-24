@@ -24,7 +24,7 @@
             >
                 <img 
                     src="{{ asset('images/logo.png') }}" 
-                    alt="OrientationTech Logo" 
+                    alt="ABOULCODE Logo" 
                     class="h-16 w-auto sm:h-14 w-auto drop-shadow-md transition-transform hover:scale-105" 
                     width="auto"
                     height="40"
@@ -38,16 +38,15 @@
                 aria-label="{{ __('site.aria.main_navigation') }}"
             >
                 @foreach([
-                    'accueil' => __('site.nav.home'),
-                    'about' => __('site.nav.about'),
-                    'services' => __('site.nav.services'),
-                    'domaines-numeriques' => __('site.nav.domains'),
-                    'blog' => __('site.nav.blog'),
-                    'faq' => __('site.nav.faq'),
-                    'contact' => __('site.nav.contact'),
+                    'accueil' => 'Accueil',
+                    'projects' => 'Projets',
+                    'services' => 'Services',
+                    'blog' => 'Blog',
+                    'about' => 'À propos',
+                    'contact' => 'Contact',
                 ] as $anchor => $label)
                     <a 
-                        href="{{ $anchor === 'services' ? url('#services') : ($anchor === 'domaines-numeriques' ? route('domains.index') : ($base . '#'.$anchor)) }}" 
+                        href="{{ $anchor === 'projects' ? route('projects.index') : ($anchor === 'services' ? route('services.index') : ($anchor === 'about' ? route('about.index') : ($anchor === 'blog' ? route('pages.blog.index') : ($anchor === 'contact' ? route('contact.create') : $base . '#'.$anchor)))) }}" 
                         class="nav-link group relative text-base font-medium text-white/90 transition hover:text-[#2563eb] focus:outline-none focus-visible:text-[#2563eb] dark:text-gray-100"
                     >
                         {{ $label }}
@@ -188,14 +187,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="rounded-lg border border-[#2563eb] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#2563eb]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]">
-                        {{ __('site.auth.login') }}
-                    </a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="rounded-lg bg-[#2563eb] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#465a87] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2">
-                            {{ __('site.auth.register') }}
-                        </a>
-                    @endif
+                    <!-- No login/register buttons for public visitors -->
                 @endauth
             </div>
 
@@ -271,16 +263,15 @@
             >
                 <!-- Mobile Nav Links -->
                 @foreach([
-                    'accueil' => __('site.nav.home'),
-                    'about' => __('site.nav.about'),
-                    'services' => __('site.nav.services'),
-                    'domaines-numeriques' => __('site.nav.domains'),
-                    'blog' => __('site.nav.blog'),
-                    'faq' => __('site.nav.faq'),
-                    'contact' => __('site.nav.contact'),
+                    'accueil' => 'Accueil',
+                    'projects' => 'Projets',
+                    'services' => 'Services',
+                    'blog' => 'Blog',
+                    'about' => 'À propos',
+                    'contact' => 'Contact',
                 ] as $anchor => $label)
                     <a 
-                        href="{{ $anchor === 'services' ? url('/noservices') : ($anchor === 'domaines-numeriques' ? route('domains.index') : ($base . '#'.$anchor)) }}" 
+                        href="{{ $anchor === 'projects' ? route('projects.index') : ($anchor === 'services' ? route('services.index') : ($anchor === 'about' ? route('about.index') : ($anchor === 'blog' ? route('pages.blog.index') : ($anchor === 'contact' ? route('contact.create') : $base . '#'.$anchor)))) }}" 
                         class="block rounded-lg px-4 py-2.5 text-base font-medium text-gray-700 transition hover:bg-[#2563eb]/10 hover:text-[#2563eb] dark:text-gray-200 dark:hover:bg-[#2563eb]/20"
                         @click="mobileMenuOpen = false"
                     >

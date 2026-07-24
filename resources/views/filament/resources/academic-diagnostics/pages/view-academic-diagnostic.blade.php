@@ -215,7 +215,7 @@
             (function () {
                 const canvasId = 'domain-chart-{{ $chartIdSuffix }}';
                 const canvas = document.getElementById(canvasId);
-                const charts = window.orientationTechCharts || (window.orientationTechCharts = {});
+                const charts = window.ABOULCODECharts || (window.ABOULCODECharts = {});
 
                 if (!canvas || typeof Chart === 'undefined') {
                     return;

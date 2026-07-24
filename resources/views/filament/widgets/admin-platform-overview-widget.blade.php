@@ -6,7 +6,7 @@
 
         <div class="grid gap-6 lg:grid-cols-3">
             <div>
-                <h3 class="text-sm font-semibold text-gray-950 dark:text-white">Funnel OrientationTech</h3>
+                <h3 class="text-sm font-semibold text-gray-950 dark:text-white">Funnel ABOULCODE</h3>
                 <div class="mt-4 space-y-3">
                     @php($max = max(1, collect($funnel)->max('value')))
                     @foreach($funnel as $step)

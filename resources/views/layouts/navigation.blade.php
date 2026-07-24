@@ -17,7 +17,7 @@
             >
                 <img 
                     src="{{ asset('images/logo.png') }}" 
-                    alt="OrientationTech Logo" 
+                    alt="ABOULCODE Logo" 
                     class="h-16 w-auto sm:h-14 w-auto drop-shadow-md" 
                     width="auto"
                     height="40"
