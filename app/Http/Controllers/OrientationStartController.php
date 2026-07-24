@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OrientationStartController extends Controller
 {
-    public const ACCOUNT_COOKIE = 'orientationtech_has_account';
+    public const ACCOUNT_COOKIE = 'ABOULCODE_has_account';
 
     public function __invoke(Request $request): RedirectResponse
     {

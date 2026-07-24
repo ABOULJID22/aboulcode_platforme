@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $post->translation()?->title ?? $post->title }} · OrientationTech</title>
+  <title>{{ $post->translation()?->title ?? $post->title }} · ABOULCODE</title>
   @include('layouts.theme-init')
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 

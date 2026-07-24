@@ -19,7 +19,7 @@ class DomainExplorerController extends Controller
     {
         $query = Domain::query()->active();
         $search = trim((string) $request->query('search'));
-        $locales = array_keys(config('orientationtech.supported_locales', ['fr' => 'Francais', 'en' => 'English']));
+        $locales = array_keys(config('ABOULCODE.supported_locales', ['fr' => 'Francais', 'en' => 'English']));
 
         if ($search !== '') {
             $query->where(function ($query) use ($search, $locales): void {

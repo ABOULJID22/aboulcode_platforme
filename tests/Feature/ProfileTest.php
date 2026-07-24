@@ -106,7 +106,7 @@ class ProfileTest extends TestCase
 
     private function useTemporaryPublicDisk(): void
     {
-        $root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'orientationtech-public-test-' . Str::uuid();
+        $root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'ABOULCODE-public-test-' . Str::uuid();
 
         config([
             'filesystems.disks.public.root' => $root,

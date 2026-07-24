@@ -37,6 +37,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 
 
 {{-- HERO --}}
+{{-- HERO --}}
 <section id="hero" class="relative isolate overflow-hidden bg-[#eff6ff] px-4 pt-24 pb-8 transition-colors dark:bg-slate-950 sm:px-6 sm:pt-28 lg:pt-32">
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(96,165,250,.22),transparent_28%),radial-gradient(circle_at_86%_18%,rgba(37,99,235,.16),transparent_30%),linear-gradient(135deg,#ffffff_0%,#f8fbff_48%,#eef5ff_100%)] dark:hidden"></div>
     <div class="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_16%_18%,rgba(37,99,235,.28),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(96,165,250,.14),transparent_34%),linear-gradient(135deg,#020617_0%,#0f172a_54%,#172554_100%)] dark:block"></div>
@@ -193,217 +194,152 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 
 
 
-{{-- ==============================================================
-    SECTEURS & EXPERTISES
-    Prérequis : Tailwind CSS et la police Space Grotesk chargée dans le layout.
-================================================================ --}}
+{{-- ════════════════════════ PROBLEM / SERVICES ════════════════════════ --}}
+<section id="services" class="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-[#2563eb] to-[#172554] dark:from-gray-900 dark:to-gray-800">
+  {{-- Abstract Animated Background --}}
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="hidden md:block absolute -top-16 -left-16 w-72 h-72 bg-white/10 rounded-full blur-2xl opacity-30"></div>
+    <div class="hidden md:block absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-20"></div>
+    <div class="absolute top-0 -left-8 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob"></div>
+    <div class="absolute right-16 -bottom-2 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-2000"></div>
+    <div class="absolute right-16 -bottom-16 w-80 h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-4000"></div>
+  </div>
 
+  <div class="w-full max-w-[95%] mx-auto px-4 md:px-8 relative z-10">
 
-<section class="relative isolate overflow-hidden border-y border-slate-200 bg-slate-50 py-20 sm:py-28 dark:border-slate-800 dark:bg-slate-950">
-    {{-- Décor de fond --}}
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div class="absolute left-1/2 top-0 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-blue-400/10 blur-3xl dark:bg-blue-500/10"></div>
-        <div class="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-indigo-400/10 blur-3xl dark:bg-indigo-500/10"></div>
+    {{-- Full Width Title Section --}}
+    <div class="w-full mb-10">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
+        Quand votre digital ne reflète plus la réalité de votre activité.
+      </h1>
+      <div class="w-40 h-1.5 bg-gradient-to-r from-blue-300 to-transparent rounded-full"></div>
     </div>
 
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-            <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-blue-700 dark:border-blue-900 dark:bg-blue-950/60 dark:text-blue-300">
-                <span class="h-1.5 w-1.5 rounded-full bg-blue-600"></span>
-                Expertise métier
-            </p>
-            <h2 class="font-['Space_Grotesk'] text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl dark:text-white">
-                Des solutions numériques pensées<br class="hidden sm:block">
-                pour votre <span class="text-blue-600 dark:text-blue-400">réalité terrain</span>
-            </h2>
-            <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg dark:text-slate-300">
-                Nous combinons compréhension métier, ingénierie robuste et expérience utilisateur pour transformer vos enjeux en produits digitaux performants.
-            </p>
-        </div>
+    <div class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-2 md:gap-8 lg:gap-12 items-start">
 
-        @php
-            $sectors = [
-                [
-                    'title' => 'Produits & services digitaux',
-                    'description' => 'Des plateformes conçues pour accélérer l’acquisition, fluidifier les opérations et développer de nouveaux revenus.',
-                    'items' => ['SaaS & startups', 'E-commerce', 'Services B2B', 'Fintech'],
-                    'wide' => true,
-                ],
-                [
-                    'title' => 'Industrie & immobilier',
-                    'description' => 'Des outils fiables pour piloter les projets, centraliser l’information et améliorer la coordination des équipes.',
-                    'items' => ['Industrie', 'BTP', 'Immobilier', 'Logistique'],
-                    'wide' => false,
-                ],
-                [
-                    'title' => 'Santé & services essentiels',
-                    'description' => 'Des parcours digitaux clairs, sécurisés et adaptés aux exigences de vos utilisateurs.',
-                    'items' => ['Santé', 'Bien-être', 'Éducation', 'Services publics'],
-                    'wide' => false,
-                ],
-            ];
-        @endphp
+      {{-- Contenu Texte (Gauche) --}}
+      <div class="order-1 lg:order-1 animate-fade-in-left">
+        <div class="lg:mb-0">
 
-        <div class="mt-14 grid gap-5 lg:grid-cols-2">
-            @foreach ($sectors as $index => $sector)
-                @php $wide = $sector['wide'] ?? false; @endphp
+          <div class="text-base md:text-lg text-blue-50/90 mb-6">
+            Site vitrine qui date, outils bricolés, données éparpillées, aucune plateforme
+            pour suivre vos projets : beaucoup d’équipes savent qu’elles doivent se
+            moderniser, mais n’ont pas encore une solution numérique claire et fiable.
+          </div>
 
-                <article class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-950/5 sm:p-8 {{ $wide ? 'lg:col-span-2' : '' }} dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:shadow-black/20">
-                    <div aria-hidden="true" class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-blue-100/70 transition duration-500 group-hover:scale-150 dark:bg-blue-950/60"></div>
+          {{-- 4 Cards Problèmes --}}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-6">
 
-                    <div class="relative {{ $wide ? 'grid gap-7 lg:grid-cols-[1.15fr_.85fr] lg:items-end' : '' }}">
-                        <div>
-                            <span class="mb-6 flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-950 text-sm font-bold text-white shadow-lg shadow-slate-950/20 dark:bg-blue-500">
-                                0{{ $index + 1 }}
-                            </span>
-                            <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
-                                {{ $sector['title'] }}
-                            </h3>
-                            <p class="mt-3 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300">
-                                {{ $sector['description'] }}
-                            </p>
-                        </div>
-
-                        <ul class="relative flex flex-wrap gap-2 {{ $wide ? 'lg:justify-end' : 'mt-7' }}" aria-label="Secteurs">
-                            @foreach ($sector['items'] as $item)
-                                <li class="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-                                    {{ $item }}
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </article>
-            @endforeach
-
-            <article class="relative overflow-hidden rounded-3xl bg-blue-700 p-7 text-white shadow-lg shadow-blue-900/20 sm:p-8">
-                <div aria-hidden="true" class="absolute -right-12 -top-12 h-44 w-44 rounded-full border-[20px] border-white/10"></div>
-                <div class="relative flex h-full flex-col justify-between gap-7">
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-100">Un besoin spécifique ?</p>
-                        <h3 class="mt-3 font-['Space_Grotesk'] text-2xl font-bold tracking-tight">
-                            Votre contexte mérite une réponse sur mesure.
-                        </h3>
-                    </div>
-                    <a href="/contact" class="inline-flex w-fit items-center gap-2 text-sm font-bold text-white transition hover:gap-3 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-700">
-                        Échangeons sur votre projet
-                        <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-                        </svg>
-                    </a>
+            {{-- Card 1 : Présence digitale limitée --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v14H4z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 13h5" />
+                  </svg>
                 </div>
-            </article>
-        </div>
-    </div>
-</section>
-
-<section class="bg-white py-20 sm:py-28 dark:bg-slate-950">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <div class="max-w-2xl">
-                <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">Nos expertises</p>
-                <h2 class="mt-4 font-['Space_Grotesk'] text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl dark:text-white">
-                    De l’idée au produit, une équipe <span class="text-blue-600 dark:text-blue-400">qui délivre.</span>
-                </h2>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">Présence digitale limitée</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">
+                    Votre site ne montre plus vraiment qui vous êtes,
+                    ce que vous faites et pourquoi on devrait travailler avec vous.
+                  </p>
+                </div>
+              </div>
             </div>
-            <p class="max-w-md text-base leading-7 text-slate-600 dark:text-slate-300">
-                Un accompagnement complet, structuré autour de résultats concrets : adoption, performance et évolutivité.
-            </p>
-        </div>
 
-        @php
-            $services = [
-                [
-                    'number' => '01',
-                    'title' => 'Plateformes web & e-commerce',
-                    'text' => 'Des expériences rapides, accessibles et orientées conversion, de la vitrine à la boutique en ligne complexe.',
-                    'tags' => ['Sites sur mesure', 'E-commerce', 'SEO technique'],
-                    'url' => '/services/web',
-                    'featured' => true,
-                ],
-                [
-                    'number' => '02',
-                    'title' => 'Applications métier & SaaS',
-                    'text' => 'Des outils qui simplifient le travail de vos équipes et font évoluer votre modèle de service.',
-                    'tags' => ['Portails clients', 'API', 'Paiement'],
-                    'url' => '/services/applications',
-                    'featured' => false,
-                ],
-                [
-                    'number' => '03',
-                    'title' => 'IA appliquée & automatisation',
-                    'text' => 'Des assistants et workflows utiles, intégrés à vos processus pour faire gagner du temps à vos équipes.',
-                    'tags' => ['IA générative', 'RAG', 'Workflows'],
-                    'url' => '/services/ia',
-                    'featured' => false,
-                ],
-                [
-                    'number' => '04',
-                    'title' => 'Croissance & optimisation',
-                    'text' => 'Des décisions guidées par la donnée pour renforcer votre visibilité, votre acquisition et votre rétention.',
-                    'tags' => ['Analytics', 'SEO', 'CRO'],
-                    'url' => '/services/marketing',
-                    'featured' => false,
-                ],
-            ];
-        @endphp
+            {{-- Card 2 : Processus encore 100% manuels --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">Processus encore 100&nbsp;% manuels</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">
+                    Excel, e‑mails, documents éparpillés : vos équipes répètent
+                    les mêmes tâches au lieu de se concentrer sur l’essentiel.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-        <div class="mt-14 grid gap-5 md:grid-cols-2">
-            @foreach ($services as $service)
-                @php $featured = $service['featured'] ?? false; @endphp
+            {{-- Card 3 : Aucun tableau de bord fiable --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15.75h7.5m-7.5 3H12" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">Aucun tableau de bord fiable</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">
+                    Difficulté à suivre vos projets, vos chiffres ou vos utilisateurs
+                    parce que rien n’est vraiment centralisé ni mis en forme.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                <a href="{{ $service['url'] }}"
-                   class="group relative flex min-h-[290px] flex-col justify-between overflow-hidden rounded-3xl border p-7 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 sm:p-8
-                          {{ $featured
-                              ? 'border-slate-950 bg-slate-950 text-white shadow-xl shadow-slate-950/15 dark:border-blue-500 dark:bg-blue-600'
-                              : 'border-slate-200 bg-slate-50 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-xl hover:shadow-blue-950/5 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:bg-slate-900' }}">
-                    @if ($featured)
-                        <div aria-hidden="true" class="absolute -right-12 -top-10 h-56 w-56 rounded-full bg-blue-500/25 blur-2xl"></div>
-                    @endif
+            {{-- Card 4 : Solutions bricolées, peu évolutives --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#60a5fa] hover:bg-white/10 hover:border-[#bfdbfe] transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 ring-1 ring-[#93c5fd]/35 flex items-center justify-center text-white shadow-inner group-hover:scale-110 group-hover:bg-[#3b82f6] transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <circle cx="12" cy="12" r="3.5" />
+                    <path d="M12 2.75v3" />
+                    <path d="M12 18.25v3" />
+                    <path d="M2.75 12h3" />
+                    <path d="M18.25 12h3" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">Solutions bricolées, peu évolutives</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">
+                    Plugins, outils gratuits, scripts maison : chaque changement
+                    devient complexe et vous empêche de faire grandir votre produit.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                    <div class="relative flex items-start justify-between gap-4">
-                        <span class="font-['Space_Grotesk'] text-sm font-bold {{ $featured ? 'text-blue-300' : 'text-blue-600 dark:text-blue-400' }}">
-                            {{ $service['number'] }}
-                        </span>
-                        <span class="flex h-10 w-10 items-center justify-center rounded-full border transition group-hover:rotate-45
-                                     {{ $featured
-                                         ? 'border-white/20 bg-white/10'
-                                         : 'border-slate-200 bg-white text-slate-950 dark:border-slate-700 dark:bg-slate-800 dark:text-white' }}">
-                            <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-                            </svg>
-                        </span>
-                    </div>
+          </div>{{-- fin Benefits Grid --}}
 
-                    <div class="relative mt-10">
-                        <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight">
-                            {{ $service['title'] }}
-                        </h3>
-                        <p class="mt-3 max-w-md text-sm leading-7 {{ $featured ? 'text-slate-300' : 'text-slate-600 dark:text-slate-300' }}">
-                            {{ $service['text'] }}
-                        </p>
-                        <div class="mt-6 flex flex-wrap gap-2">
-                            @foreach ($service['tags'] as $tag)
-                                <span class="rounded-full px-3 py-1.5 text-xs font-semibold
-                                             {{ $featured
-                                                 ? 'bg-white/10 text-white ring-1 ring-inset ring-white/15'
-                                                 : 'bg-white text-slate-700 ring-1 ring-inset ring-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700' }}">
-                                    {{ $tag }}
-                                </span>
-                            @endforeach
-                        </div>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-
-        <div class="mt-12 text-center">
-            <a href="/portfolio"
-               class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
-                Découvrir nos réalisations
+          {{-- CTA Button (Desktop) --}}
+          <div class="hidden lg:block">
+            <a href="/noservices" class="group inline-flex items-center gap-3 bg-[#2563eb] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl hover:bg-[#1d4ed8] hover:scale-105 transition-all duration-300 transform hover:-translate-y-1">
+              Découvrir comment ABOULCODE peut moderniser vos outils numériques
+              <span class="w-8 h-8 rounded-full bg-white text-[#2563eb] flex items-center justify-center group-hover:bg-[#172554] transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </span>
             </a>
+          </div>
+
         </div>
+      </div>
+
+      {{-- Video Container (Droite sur Desktop) --}}
+      <div class="order-2 lg:order-2 flex justify-center lg:justify-start lg:pl-12 items-start relative perspective-1000">
+        <div class="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full animate-pulse-slow pointer-events-none"></div>
+        {{-- À compléter plus tard par un mockup vidéo / dashboard façon Framer --}}
+      </div>
+
     </div>
+  </div>
 </section>
+
+
+
 
 
 {{-- ════════════════════════ BENEFITS / POURQUOI ════════════════════════ --}}

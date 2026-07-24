@@ -23,7 +23,7 @@ class UserUuidAndSeederTest extends TestCase
     {
         $this->seed(UserSeeder::class);
 
-        $email = env('SEED_ADMIN_EMAIL') ?: 'contact@Orientationtech.ma';
+        $email = env('SEED_ADMIN_EMAIL') ?: 'contact@ABOULCODE.ma';
         $this->assertDatabaseHas('users', ['email' => $email]);
 
         $user = User::where('email', $email)->first();

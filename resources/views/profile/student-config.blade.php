@@ -22,7 +22,7 @@
                             Complete ton profil scolaire
                         </h1>
                         <p class="mt-4 text-sm leading-7 text-slate-300">
-                            Ces informations aident OrientationTech a adapter le diagnostic, les recommandations, les ressources et le rapport d'orientation au contexte marocain.
+                            Ces informations aident ABOULCODE a adapter le diagnostic, les recommandations, les ressources et le rapport d'orientation au contexte marocain.
                         </p>
 
                         <div class="mt-8 grid gap-3">
@@ -197,13 +197,13 @@
                                 <div class="rounded-2xl border border-blue-100 bg-[#eff6ff] p-5 text-sm leading-6 text-slate-700">
                                     <p class="font-bold text-slate-950">Consentement</p>
                                     <p class="mt-2">
-                                        OrientationTech peut te contacter pour expliquer les services, proposer un accompagnement et t informer des opportunites utiles pour ton orientation.
+                                        ABOULCODE peut te contacter pour expliquer les services, proposer un accompagnement et t informer des opportunites utiles pour ton orientation.
                                     </p>
                                 </div>
 
                                 <label class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-700">
                                     <input type="checkbox" name="consent_contact" value="1" required class="mt-1 h-5 w-5 accent-[#2563eb]" @checked(old('consent_contact', $profile->consent_contact ?? false))>
-                                    <span>J accepte d etre contacte par OrientationTech dans le cadre de mon accompagnement d orientation.</span>
+                                    <span>J accepte d etre contacte par ABOULCODE dans le cadre de mon accompagnement d orientation.</span>
                                 </label>
                                 <x-input-error :messages="$errors->get('consent_contact')" class="mt-2" />
                             </section>

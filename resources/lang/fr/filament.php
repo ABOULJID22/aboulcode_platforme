@@ -148,7 +148,7 @@ return [
         ],
         'footer' => [
             'aria' => 'Pied de page du tableau de bord',
-            'copyright' => '© 2026 OrientationTech. Tous droits réservés.',
+            'copyright' => '© 2026 ABOULCODE. Tous droits réservés.',
             'about' => 'À propos',
             'privacy' => 'Confidentialité',
             'terms' => 'Conditions d’utilisation',

@@ -237,7 +237,7 @@
             <section class="or-hero p-5 sm:p-7 lg:p-8">
                 <div class="grid gap-6 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
                     <div class="space-y-4">
-                        <span class="or-chip">Rapport professionnel OrientationTech</span>
+                        <span class="or-chip">Rapport professionnel ABOULCODE</span>
                         <div>
                             <h1 class="max-w-4xl text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
                                 {{ $this->user?->name ?? 'Eleve' }}
@@ -636,7 +636,7 @@
             <section class="or-card p-5 sm:p-6">
                 <div class="or-section-title">
                     <span class="or-section-number">12</span>
-                    <h2 class="or-section-heading">Validation OrientationTech</h2>
+                    <h2 class="or-section-heading">Validation ABOULCODE</h2>
                 </div>
                 <div class="mt-5 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
                     <p class="or-flat p-4 text-sm leading-7 text-slate-700">
@@ -644,7 +644,7 @@
                     </p>
                     <div class="or-flat p-4">
                         <p class="or-label">Signature</p>
-                        <p class="mt-2 text-xl font-black text-blue-700">OrientationTech</p>
+                        <p class="mt-2 text-xl font-black text-blue-700">ABOULCODE</p>
                         <p class="mt-1 text-sm leading-6 text-slate-600">Conseiller d orientation - Systeme IA</p>
                         <p class="mt-3 text-xs font-bold text-slate-500">{{ now()->format('d/m/Y H:i') }}</p>
                     </div>

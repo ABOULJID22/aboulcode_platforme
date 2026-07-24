@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Politique de confidentialité — {{ config('app.name', 'OrientationTech') }}</title>
+  <title>Politique de confidentialité — {{ config('app.name', 'ABOULCODE') }}</title>
   @include('layouts.theme-init')
   @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -13,8 +13,8 @@
 
 @php
     $settings = $siteSettings ?? null;
-    $platformName = config('app.name', 'OrientationTech');
-    $contactEmail = $settings?->email ?? 'contact@Orientationtech.ma';
+    $platformName = config('app.name', 'ABOULCODE');
+    $contactEmail = $settings?->email ?? 'contact@ABOULCODE.ma';
     $phone = $settings?->phone ?? '+212 71549452';
     $address = $settings?->address ?? 'Agadir, 85000 Tiznit, Maroc';
 @endphp

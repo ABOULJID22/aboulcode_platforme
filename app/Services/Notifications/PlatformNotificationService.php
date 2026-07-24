@@ -112,7 +112,7 @@ class PlatformNotificationService
 
         $this->sendToUsers(
             $user,
-            'Bienvenue sur OrientationTech',
+            'Bienvenue sur ABOULCODE',
             'Commence par configurer ton profil, puis passe le test diagnostique et le test de personnalite.',
             'success',
             $this->safeUrl(fn () => route('student-profile.show')),
@@ -123,7 +123,7 @@ class PlatformNotificationService
         $this->sendToUsers(
             $this->admins(),
             'Nouvel eleve inscrit',
-            "{$user->name} a rejoint la plateforme OrientationTech.",
+            "{$user->name} a rejoint la plateforme ABOULCODE.",
             'info',
             $this->safeResourceUrl(\App\Filament\Resources\Users\UserResource::class, 'index'),
             'Voir les utilisateurs',
@@ -218,7 +218,7 @@ class PlatformNotificationService
         $this->sendToUsers(
             $user,
             'Rapport PDF genere',
-            'Ton rapport OrientationTech a ete prepare avec signature et synthese professionnelle.',
+            'Ton rapport ABOULCODE a ete prepare avec signature et synthese professionnelle.',
             'success',
             $this->safePageUrl(RapportOrientationComplet::class),
             'Retour au rapport',
@@ -460,7 +460,7 @@ class PlatformNotificationService
         $this->sendToUsers(
             $user,
             'Reponse du support',
-            'L equipe OrientationTech a repondu a votre message de support.',
+            'L equipe ABOULCODE a repondu a votre message de support.',
             'success',
             url('/admin/client-support'),
             'Voir la reponse',

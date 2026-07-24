@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'OrientationTech'),
+    'name' => env('APP_NAME', 'ABOULCODE'),
 
     /*
     |--------------------------------------------------------------------------

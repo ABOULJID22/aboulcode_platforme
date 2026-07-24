@@ -11,7 +11,7 @@ class SetLocaleFromSession
     {
         $locale = session('locale', config('app.locale'));
 
-        if (! array_key_exists($locale, config('orientationtech.supported_locales', []))) {
+        if (! array_key_exists($locale, config('ABOULCODE.supported_locales', []))) {
             $locale = config('app.fallback_locale');
         }
 

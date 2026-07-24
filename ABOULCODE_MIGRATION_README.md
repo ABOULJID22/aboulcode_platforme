@@ -1,4 +1,4 @@
-Phase 1 migration plan for transforming OrientationTech into ABOULCODE.
+Phase 1 migration plan for transforming ABOULCODE into ABOULCODE.
 
 This branch `aboulcode/migration-init` contains non-destructive changes:
 

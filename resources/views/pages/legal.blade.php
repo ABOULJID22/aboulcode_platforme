@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mentions légales — {{ config('app.name', 'OrientationTech') }}</title>
+  <title>Mentions légales — {{ config('app.name', 'ABOULCODE') }}</title>
   @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
     @include('layouts.theme-init')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
